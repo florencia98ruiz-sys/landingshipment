@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipment Logística — Logística para Mercado Libre Flex y Ecommerce</title>
+    <meta name="description" content="Logística confiable para vendedores de Mercado Libre Flex y ecommerce. Cumplimos horarios, trabajamos sábados, +50 vehículos. CABA, Zona Sur y La Plata.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg:         #06101E;
+            --surface:    #0C1A2E;
+            --surface-2:  #112240;
+            --blue:       #0044CC;
+            --blue-light: #2563EB;
+            --accent:     #4A90FF;
+            --white:      #FFFFFF;
+            --gray-lt:    #94A3B8;
+            --gray:       #475569;
+            --border:     rgba(255,255,255,0.08);
+            --wa:         #25D366;
+            --r:          12px;
+            --r-lg:       20px;
+            --ease:       0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 60px;
+            background: rgba(6,16,30,0.93);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar__logo img { height: 48px; width: auto; display: block; }
+        .navbar__logo-fallback {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .navbar__links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .navbar__links a {
+            color: var(--gray-lt);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color var(--ease);
+        }
+        .navbar__links a:hover { color: var(--white); }
+
+        .btn-wa-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--wa);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: var(--ease);
+        }
+        .btn-wa-sm:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            inset-inline: 0;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 24px;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 99;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-menu .btn-wa-sm { justify-content: center; padding: 14px; border-radius: var(--r); }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 130px 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -150px; right: -150px;
+            width: 650px; height: 650px;
+            background: radial-gradient(circle, rgba(0,68,204,.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; left: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,51,160,.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,68,204,.18);
+            border: 1px solid rgba(0,68,204,.4);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 28px;
+            width: fit-content;
+        }
+        .hero__badge i { font-size: 8px; color: #22C55E; }
+
+        .hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(46px, 7vw, 86px);
+            font-weight: 800;
+            line-height: 1.0;
+            max-width: 820px;
+            margin-bottom: 24px;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero__sub {
+            font-size: clamp(15px, 2vw, 19px);
+            color: var(--gray-lt);
+            max-width: 540px;
+            margin-bottom: 40px;
+            line-height: 1.75;
+        }
+
+        .hero__ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .btn-wa-lg {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--wa);
+            color: #fff;
+            padding: 17px 34px;
+            border-radius: var(--r);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 4px 24px rgba(37,211,102,.3);
+            transition: var(--ease);
+        }
+        .btn-wa-lg:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,.4); }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--white);
+            padding: 17px 34px;
+            border-radius: var(--r);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            transition: var(--ease);
+        }
+        .btn-ghost:hover { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.05); }
+
+        .hero__note {
+            font-size: 13px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero__note i { color: #22C55E; }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 36px 60px;
+        }
+        .stats-bar__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat__num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 6px;
+            color: var(--accent);
+        }
+        .stat__label {
+            font-size: 14px;
+            color: var(--gray-lt);
+            font-weight: 500;
+        }
+
+        /* ─── SECTION COMMONS ─── */
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(34px, 5vw, 58px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 17px;
+            color: var(--gray-lt);
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        /* ─── PAIN ─── */
+        .pain {
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .pain__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .pain-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 28px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: var(--ease);
+        }
+        .pain-card:hover {
+            border-color: rgba(255,80,80,.3);
+            background: rgba(255,50,50,.04);
+        }
+        .pain-card__icon {
+            width: 42px; height: 42px; min-width: 42px;
+            background: rgba(255,80,80,.14);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FF6B6B;
+            font-size: 18px;
+        }
+        .pain-card__title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+        .pain-card__text  { font-size: 13px; color: var(--gray-lt); line-height: 1.65; }
+
+        /* ─── DIFFERENTIALS ─── */
+        .differentials {
+            padding: 100px 60px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .differentials__inner { max-width: 1200px; margin: 0 auto; }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .diff-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 32px 24px;
+            text-align: center;
+            transition: var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+        .diff-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #003A9E, var(--blue-light));
+            opacity: 0;
+            transition: var(--ease);
+        }
+        .diff-card:hover {
+            border-color: rgba(0,68,204,.4);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0,68,204,.14);
+        }
+        .diff-card:hover::after { opacity: 1; }
+
+        .diff-card__icon {
+            width: 56px; height: 56px;
+            background: rgba(0,68,204,.14);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--accent);
+            margin: 0 auto 20px;
+        }
+        .diff-card__title { font-weight: 700; font-size: 15px; margin-bottom: 10px; }
+        .diff-card__text  { font-size: 13px; color: var(--gray-lt); line-height: 1.65; }
+
+        /* ─── HOW IT WORKS ─── */
+        .how { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
+
+        .how__steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            position: relative;
+        }
+        .how__steps::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: calc(16.66% + 20px);
+            right: calc(16.66% + 20px);
+            height: 1px;
+            background: linear-gradient(90deg, #003A9E, var(--blue-light), #003A9E);
+            opacity: 0.35;
+        }
+        .step { text-align: center; }
+        .step__num {
+            width: 72px; height: 72px;
+            border: 2px solid var(--blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 auto 24px;
+            background: var(--bg);
+            position: relative;
+            z-index: 1;
+        }
+        .step__title { font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+        .step__text  { font-size: 14px; color: var(--gray-lt); line-height: 1.75; }
+
+        /* ─── ZONAS ─── */
+        .zonas {
+            padding: 100px 60px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .zonas__inner { max-width: 1100px; margin: 0 auto; }
+        .zonas__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .zonas__left h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .zonas__sub { font-size: 15px; color: var(--gray-lt); margin-bottom: 28px; }
+
+        .zona-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+        .zona-list li { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; }
+        .zona-list li i { color: var(--accent); width: 18px; }
+
+        .zonas__right { display: flex; flex-direction: column; gap: 14px; }
+        .zona-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .zona-card__icon {
+            width: 44px; height: 44px; min-width: 44px;
+            background: rgba(0,68,204,.14);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 19px;
+        }
+        .zona-card__title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+        .zona-card__sub   { font-size: 13px; color: var(--gray-lt); }
+
+        /* ─── TESTIMONIOS ─── */
+        .testimonios { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+        .testimonios__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .tcard {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 32px;
+            position: relative;
+        }
+        .tcard::before {
+            content: '"';
+            position: absolute;
+            top: 12px; right: 24px;
+            font-size: 90px;
+            color: rgba(74,144,255,.12);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .tcard__stars { color: #F59E0B; font-size: 14px; margin-bottom: 16px; }
+        .tcard__text  { font-size: 15px; color: var(--gray-lt); line-height: 1.75; margin-bottom: 24px; font-style: italic; }
+        .tcard__author { display: flex; align-items: center; gap: 12px; }
+        .tcard__av {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--surface-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent);
+        }
+        .tcard__name { font-weight: 700; font-size: 14px; }
+        .tcard__biz  { font-size: 12px; color: var(--gray-lt); }
+
+        /* ─── FAQ ─── */
+        .faq {
+            padding: 100px 60px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .faq__inner { max-width: 780px; margin: 0 auto; }
+
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-item:last-child { border-bottom: none; }
+
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: left;
+            padding: 24px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .faq-q i { color: var(--accent); transition: transform var(--ease); flex-shrink: 0; }
+        .faq-q[aria-expanded="true"] i { transform: rotate(180deg); }
+
+        .faq-a {
+            font-size: 15px;
+            color: var(--gray-lt);
+            line-height: 1.75;
+            padding-bottom: 24px;
+            display: none;
+        }
+        .faq-a.open { display: block; }
+
+        /* ─── CTA FINAL ─── */
+        .cta-final {
+            padding: 120px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 800px; height: 600px;
+            background: radial-gradient(ellipse, rgba(0,68,204,.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-final__inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+        .cta-final h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(38px, 6vw, 70px);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+        .cta-final h2 em { font-style: normal; color: var(--accent); }
+        .cta-final__sub { font-size: 18px; color: var(--gray-lt); margin-bottom: 40px; line-height: 1.75; }
+
+        .btn-wa-xl {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--wa);
+            color: #fff;
+            padding: 20px 48px;
+            border-radius: var(--r);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: 0 4px 32px rgba(37,211,102,.35);
+            transition: var(--ease);
+        }
+        .btn-wa-xl:hover { filter: brightness(1.1); transform: translateY(-3px); box-shadow: 0 12px 44px rgba(37,211,102,.45); }
+        .cta-final__note { margin-top: 18px; font-size: 13px; color: var(--gray); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 56px 60px 32px;
+        }
+        .footer__inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+        .footer__brand img { height: 48px; margin-bottom: 16px; }
+        .footer__brand p   { font-size: 14px; color: var(--gray-lt); line-height: 1.75; max-width: 300px; }
+        .footer__col h4 {
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray-lt);
+            margin-bottom: 16px;
+        }
+        .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer__col ul li { font-size: 14px; color: var(--gray-lt); }
+        .footer__col ul li a { color: var(--gray-lt); text-decoration: none; transition: color var(--ease); }
+        .footer__col ul li a:hover { color: var(--white); }
+
+        .footer__bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer__bottom p { font-size: 12px; color: var(--gray); }
+
+        /* ─── FLOATING WA ─── */
+        .float-wa {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            z-index: 200;
+            width: 60px; height: 60px;
+            background: var(--wa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 28px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,.4);
+            transition: var(--ease);
+        }
+        .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
+
+        /* ─── ANIMATE IN ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .diff-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer__inner { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 14px 24px; }
+            .navbar__links, .navbar__links ~ .btn-wa-sm { display: none; }
+            .hamburger { display: flex; }
+
+            .hero { padding: 105px 24px 60px; }
+            .hero h1 { font-size: 46px; }
+            .hero__ctas { flex-direction: column; }
+            .btn-wa-lg, .btn-ghost { justify-content: center; }
+
+            .stats-bar { padding: 32px 24px; }
+            .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+            .pain { padding: 64px 24px; }
+            .pain__grid { grid-template-columns: 1fr; }
+
+            .differentials { padding: 64px 24px; }
+            .diff-grid { grid-template-columns: 1fr; }
+
+            .how { padding: 64px 24px; }
+            .how__steps { grid-template-columns: 1fr; gap: 32px; }
+            .how__steps::before { display: none; }
+
+            .zonas { padding: 64px 24px; }
+            .zonas__grid { grid-template-columns: 1fr; gap: 40px; }
+
+            .testimonios { padding: 64px 24px; }
+            .testimonios__grid { grid-template-columns: 1fr; }
+
+            .faq { padding: 64px 24px; }
+            .cta-final { padding: 80px 24px; }
+
+            footer { padding: 48px 24px 32px; }
+            .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+            .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#" class="navbar__logo" id="logo-wrap">
+            <img src="logo.png" alt="Shipment Logística"
+                 onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
+            <span id="logo-text" class="navbar__logo-fallback" style="display:none">SHIPMENT LOGÍSTICA</span>
+        </a>
+
+        <ul class="navbar__links">
+            <li><a href="#diferencial">Por qué Shipment</a></li>
+            <li><a href="#zonas">Zonas</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li>
+                <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
+                   class="btn-wa-sm" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> Consultar ahora
+                </a>
+            </li>
+        </ul>
+
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#diferencial" onclick="closeMenu()">Por qué Shipment</a>
+        <a href="#zonas"       onclick="closeMenu()">Zonas</a>
+        <a href="#testimonios" onclick="closeMenu()">Testimonios</a>
+        <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
+           class="btn-wa-sm" target="_blank" rel="noopener" onclick="closeMenu()">
+            <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+        </a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__badge">
+            <i class="fas fa-circle"></i>
+            Operando en CABA, Zona Sur y La Plata
+        </div>
+
+        <h1>Tu logística no puede hacerte perder <em>reputación en Mercado Libre</em></h1>
+
+        <p class="hero__sub">
+            Cumplimos los horarios Flex todos los días. Sin excusas.<br>
+            +50 vehículos, atención directa y operación diseñada para escalar con tu negocio.
+        </p>
+
+        <div class="hero__ctas">
+            <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
+               class="btn-wa-lg" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Quiero cotizar ahora
+            </a>
+            <a href="#diferencial" class="btn-ghost">
+                Ver diferenciales <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+
+        <p class="hero__note">
+            <i class="fas fa-check-circle"></i>
+            Trabajamos con negocios que hacen mínimo 15 envíos diarios
+        </p>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stats-bar__grid">
+            <div class="stat">
+                <div class="stat__num">+50</div>
+                <div class="stat__label">Vehículos operando</div>
+            </div>
+            <div class="stat">
+                <div class="stat__num">+450</div>
+                <div class="stat__label">Envíos diarios</div>
+            </div>
+            <div class="stat">
+                <div class="stat__num">3</div>
+                <div class="stat__label">Zonas de cobertura</div>
+            </div>
+            <div class="stat">
+                <div class="stat__num">6</div>
+                <div class="stat__label">Días a la semana</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAIN SECTION -->
+    <section>
+        <div class="pain">
+            <div class="section-header">
+                <span class="section-label">¿Te suena familiar?</span>
+                <h2 class="section-title">Tu logística actual<br>te está costando plata</h2>
+                <p class="section-sub">Mercado Libre penaliza fuerte las entregas fuera de horario. Cada tarde es reputación perdida — y eso se traduce en menos ventas.</p>
+            </div>
+            <div class="pain__grid">
+                <div class="pain-card reveal">
+                    <div class="pain-card__icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <div class="pain-card__title">Entregas fuera de horario</div>
+                        <div class="pain-card__text">Mercado Libre te penaliza y baja tu reputación. Cada tarde es plata que perdés.</div>
+                    </div>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-card__icon"><i class="fas fa-comment-slash"></i></div>
+                    <div>
+                        <div class="pain-card__title">Mala comunicación</div>
+                        <div class="pain-card__text">No sabés dónde está tu paquete. El comprador tampoco. Resultado: reclamos y devoluciones.</div>
+                    </div>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-card__icon"><i class="fas fa-box-open"></i></div>
+                    <div>
+                        <div class="pain-card__title">Pérdidas y roturas</div>
+                        <div class="pain-card__text">Nadie se hace cargo. Vos absorbés el costo y la mala calificación.</div>
+                    </div>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-card__icon"><i class="fas fa-ban"></i></div>
+                    <div>
+                        <div class="pain-card__title">No podés escalar</div>
+                        <div class="pain-card__text">A más volumen, más errores. Tu logística no crece con tu negocio.</div>
+                    </div>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-card__icon"><i class="fas fa-star-half-alt"></i></div>
+                    <div>
+                        <div class="pain-card__title">Reputación en riesgo</div>
+                        <div class="pain-card__text">Calificaciones bajas te sacan del ranking y perdés ventas orgánicas que costaron meses construir.</div>
+                    </div>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-card__icon"><i class="fas fa-headset"></i></div>
+                    <div>
+                        <div class="pain-card__title">Sin soporte humano</div>
+                        <div class="pain-card__text">Cuando hay un problema, no hay nadie del otro lado. Solo mails automáticos y tiempos de respuesta eternos.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFFERENTIALS -->
+    <section class="differentials" id="diferencial">
+        <div class="differentials__inner">
+            <div class="section-header">
+                <span class="section-label">Por qué Shipment</span>
+                <h2 class="section-title">La logística que cuida<br>tu reputación</h2>
+                <p class="section-sub">No prometemos. Operamos. Estos son los diferenciales reales que hacen que nuestros clientes no se vayan.</p>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-check-double"></i></div>
+                    <div class="diff-card__title">Cumplimos horarios Flex</div>
+                    <div class="diff-card__text">Entregamos dentro del horario de Mercado Libre todos los días. Tu reputación está protegida.</div>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="diff-card__title">Trabajamos los sábados</div>
+                    <div class="diff-card__text">Mientras otras logísticas descansan, nosotros operamos. Tu negocio no para, nosotros tampoco.</div>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-user-check"></i></div>
+                    <div class="diff-card__title">Atención directa y humana</div>
+                    <div class="diff-card__text">Tenés acceso a quien maneja tu operación. Sin bots, sin derivaciones, sin cuellos de botella.</div>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="diff-card__title">Nos hacemos cargo</div>
+                    <div class="diff-card__text">Si hay pérdida o rotura, respondemos. Sin vueltas. Sin excusas. Vos no absorbés el costo.</div>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-percent"></i></div>
+                    <div class="diff-card__title">Descuento por volumen</div>
+                    <div class="diff-card__text">A más envíos, mejor tarifa. Crecer con nosotros te conviene económicamente.</div>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-file-invoice"></i></div>
+                    <div class="diff-card__title">Factura A</div>
+                    <div class="diff-card__text">Operamos en blanco. Factura A disponible para empresas y responsables inscriptos.</div>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-truck"></i></div>
+                    <div class="diff-card__title">+50 vehículos activos</div>
+                    <div class="diff-card__text">Estructura real para absorber tu volumen sin perder calidad ni tiempos de entrega.</div>
+                </div>
+                <div class="diff-card reveal">
+                    <div class="diff-card__icon"><i class="fas fa-comments"></i></div>
+                    <div class="diff-card__title">Repartidor ↔ comprador</div>
+                    <div class="diff-card__text">El comprador se comunica directamente con quien entrega. Menos reclamos, mejor experiencia.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how">
+        <div class="section-header">
+            <span class="section-label">Cómo empezar</span>
+            <h2 class="section-title">Tres pasos para<br>operar con nosotros</h2>
+        </div>
+        <div class="how__steps">
+            <div class="step reveal">
+                <div class="step__num">01</div>
+                <div class="step__title">Nos contactás por WhatsApp</div>
+                <div class="step__text">Contanos tu volumen de envíos, zonas y tipo de producto. Te respondemos en menos de 2 horas en horario comercial.</div>
+            </div>
+            <div class="step reveal">
+                <div class="step__num">02</div>
+                <div class="step__title">Te armamos una cotización</div>
+                <div class="step__text">Cotización personalizada según tu volumen y zonas. Sin letra chica, sin sorpresas. Todo claro desde el arranque.</div>
+            </div>
+            <div class="step reveal">
+                <div class="step__num">03</div>
+                <div class="step__title">Empezamos a operar</div>
+                <div class="step__text">Integramos tu operación, coordinamos la logística y empezamos a entregar. Así de simple.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ZONAS -->
+    <section class="zonas" id="zonas">
+        <div class="zonas__inner">
+            <div class="zonas__grid">
+                <div class="zonas__left">
+                    <span class="section-label">Cobertura operativa</span>
+                    <h3>Operamos donde<br>tu negocio vende</h3>
+                    <p class="zonas__sub">Zonas de reparto activas:</p>
+                    <ul class="zona-list">
+                        <li><i class="fas fa-map-marker-alt"></i> Capital Federal (CABA)</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Zona Sur del GBA</li>
+                        <li><i class="fas fa-map-marker-alt"></i> La Plata y alrededores</li>
+                    </ul>
+                </div>
+                <div class="zonas__right">
+                    <div class="zona-card reveal">
+                        <div class="zona-card__icon"><i class="fas fa-warehouse"></i></div>
+                        <div>
+                            <div class="zona-card__title">Centro de distribución — Avellaneda</div>
+                            <div class="zona-card__sub">Cobertura CABA y Zona Sur del GBA</div>
+                        </div>
+                    </div>
+                    <div class="zona-card reveal">
+                        <div class="zona-card__icon"><i class="fas fa-warehouse"></i></div>
+                        <div>
+                            <div class="zona-card__title">Centro de distribución — La Plata</div>
+                            <div class="zona-card__sub">Cobertura La Plata, Berisso, Ensenada y zona</div>
+                        </div>
+                    </div>
+                    <div class="zona-card reveal">
+                        <div class="zona-card__icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                        <div>
+                            <div class="zona-card__title">¿Tu zona no está en la lista?</div>
+                            <div class="zona-card__sub">Consultanos — estamos en expansión constante</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="testimonios" id="testimonios">
+        <div class="section-header">
+            <span class="section-label">Lo que dicen nuestros clientes</span>
+            <h2 class="section-title">Negocios que volvieron.<br>Y no se van más.</h2>
+            <p class="section-sub">La mayoría probaron otras logísticas antes. Acá están sus palabras.</p>
+        </div>
+        <div class="testimonios__grid">
+            <div class="tcard reveal">
+                <div class="tcard__stars">★★★★★</div>
+                <p class="tcard__text">"Estaba perdiendo reputación en Mercado Libre con mi logística anterior. Desde que pasé a Shipment no tuve una sola penalización. Cumplen siempre."</p>
+                <div class="tcard__author">
+                    <div class="tcard__av">M</div>
+                    <div>
+                        <div class="tcard__name">Martín G.</div>
+                        <div class="tcard__biz">Ecommerce de tecnología · CABA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tcard reveal">
+                <div class="tcard__stars">★★★★★</div>
+                <p class="tcard__text">"Lo que más valoro es la atención. Tenés a alguien real del otro lado cuando hay un problema. Con las otras logísticas era imposible comunicarse."</p>
+                <div class="tcard__author">
+                    <div class="tcard__av">L</div>
+                    <div>
+                        <div class="tcard__name">Laura P.</div>
+                        <div class="tcard__biz">Moda y accesorios · Zona Sur</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tcard reveal">
+                <div class="tcard__stars">★★★★★</div>
+                <p class="tcard__text">"Pasamos de 40 a 120 envíos diarios y Shipment lo absorbió sin problemas. No perdimos ni una entrega en el proceso. Escalamos sin romper nada."</p>
+                <div class="tcard__author">
+                    <div class="tcard__av">R</div>
+                    <div>
+                        <div class="tcard__name">Ricardo F.</div>
+                        <div class="tcard__biz">Cosmética · La Plata</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / OBJECIONES -->
+    <section class="faq">
+        <div class="faq__inner">
+            <div class="section-header">
+                <span class="section-label">Preguntas frecuentes</span>
+                <h2 class="section-title">Lo que suelen<br>preguntarnos</h2>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    Ya tengo logística. ¿Por qué cambiar?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-a">La mayoría de nuestros clientes también tenían una logística cuando nos contactaron. El diferencial es que con Shipment las penalizaciones de Mercado Libre bajan a cero, la comunicación es directa y si hay un problema alguien real responde. Muchos volvieron después de haberse ido a probar otras opciones. El costo de cambiar es bajo. El costo de quedarte con una logística que falla, no.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    ¿Cómo garantizan el cumplimiento de los horarios Flex?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-a">Tenemos la operación diseñada específicamente para cumplir con los horarios de entrega de Mercado Libre Flex. Es nuestro principal diferencial y lo que hace que nuestros clientes no tengan penalizaciones. Operamos lunes a sábado con más de 50 vehículos y centros de distribución en Avellaneda y La Plata.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    ¿Qué pasa si se pierde o rompe un paquete?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-a">Nos hacemos cargo. Sin vueltas. Tenemos un proceso claro para resolver pérdidas y daños. No vas a absorber vos el costo por un error de logística.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    ¿Hay un mínimo de envíos para trabajar juntos?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-a">Trabajamos con negocios que hacen mínimo 15 envíos diarios. Si estás en ese rango o cerca, consultanos. Si tu volumen puede crecer, mejor todavía — tenemos descuento por volumen y la estructura para acompañarte.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    ¿Emiten factura A?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-a">Sí. Operamos completamente en blanco y emitimos factura A para empresas y responsables inscriptos. Sin problemas contables ni grises.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="cta-final__inner">
+            <h2>¿Hacés más de 15 envíos diarios? <em>Hablemos hoy.</em></h2>
+            <p class="cta-final__sub">Tu reputación en Mercado Libre no puede depender de una logística que falla. Consultanos sin compromiso.</p>
+            <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce.%20Hago%20m%C3%A1s%20de%2015%20env%C3%ADos%20diarios."
+               class="btn-wa-xl" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i>
+                Hablar por WhatsApp
+            </a>
+            <p class="cta-final__note">Respondemos en menos de 2 horas en horario comercial</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer__inner">
+            <div class="footer__brand">
+                <img src="logo.png" alt="Shipment Logística"
+                     onerror="this.style.display='none'">
+                <p>Logística confiable para ecommerce y vendedores de Mercado Libre Flex. CABA, Zona Sur y La Plata.</p>
+            </div>
+            <div class="footer__col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#diferencial">Por qué Shipment</a></li>
+                    <li><a href="#zonas">Zonas</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li>📱 11 6850-0341</li>
+                    <li>📍 Avellaneda · La Plata</li>
+                    <li>🕐 Lunes a Sábado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>© 2025 Shipment Logística. Todos los derechos reservados.</p>
+            <p>Hecho para convertir, no para decorar.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WA -->
+    <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
+       class="float-wa" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        /* ── Mobile menu ── */
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        }
+        function closeMenu() {
+            document.getElementById('mobile-menu').classList.remove('open');
+        }
+
+        /* ── FAQ accordion ── */
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+                document.querySelectorAll('.faq-q').forEach(b => {
+                    b.setAttribute('aria-expanded', 'false');
+                    b.nextElementSibling.classList.remove('open');
+                });
+
+                if (!isOpen) {
+                    btn.setAttribute('aria-expanded', 'true');
+                    answer.classList.add('open');
+                }
+            });
+        });
+
+        /* ── Scroll-in animation ── */
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
