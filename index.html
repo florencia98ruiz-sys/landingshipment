@@ -274,23 +274,52 @@
         }
         .section-header { text-align: center; margin-bottom: 56px; }
 
-        /* ─── PAIN ─── */
+        /* ─── PAIN (editorial) ─── */
         .pain { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
-        .pain__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .pain-card {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: var(--r-lg); padding: 28px;
-            display: flex; gap: 16px; align-items: flex-start; transition: var(--ease);
+        .pain__layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 80px;
+            align-items: start;
         }
-        .pain-card:hover { border-color: rgba(255,80,80,.3); background: rgba(255,50,50,.04); }
-        .pain-card__icon {
-            width: 42px; height: 42px; min-width: 42px;
-            background: rgba(255,80,80,.12); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            color: #FF6B6B; font-size: 18px;
+        .pain__left { position: sticky; top: 100px; }
+        .pain__left-label {
+            display: inline-block; font-size: 12px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--yellow); margin-bottom: 20px;
         }
-        .pain-card__title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
-        .pain-card__text  { font-size: 13px; color: var(--gray-lt); line-height: 1.65; }
+        .pain__left h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(32px, 3.5vw, 50px);
+            font-weight: 900; line-height: 1.05; margin-bottom: 16px;
+        }
+        .pain__left h2 em { font-style: normal; color: var(--yellow); }
+        .pain__left p {
+            font-size: 15px; color: var(--gray-lt); line-height: 1.7; margin-bottom: 28px;
+        }
+        .pain__right { display: flex; flex-direction: column; }
+        .pain-row {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 20px;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .pain-row:first-child { border-top: 1px solid var(--border); }
+        .pain-row.reveal { transform: translateX(40px); }
+        .pain-row.reveal.visible { transform: translateX(0); }
+        .pain-row:nth-child(2) { transition-delay: 0.07s; }
+        .pain-row:nth-child(3) { transition-delay: 0.14s; }
+        .pain-row:nth-child(4) { transition-delay: 0.21s; }
+        .pain-row:nth-child(5) { transition-delay: 0.28s; }
+        .pain-row:nth-child(6) { transition-delay: 0.35s; }
+        .pain-row__num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 13px; font-weight: 800;
+            color: #FF6B6B; padding-top: 3px; letter-spacing: 1px;
+        }
+        .pain-row__title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+        .pain-row__text  { font-size: 13px; color: var(--gray-lt); line-height: 1.65; }
 
         /* ─── JOURNEY (truck road animation) ─── */
         .journey {
@@ -432,19 +461,16 @@
         .equipo__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(4, 280px);
+            grid-template-rows: 360px 280px 300px;
             gap: 10px;
         }
 
-        /* Disposición tipo revista para 8 fotos */
-        .foto-slot[data-id="1"] { grid-column: 1;          grid-row: 1 / span 2; }
-        .foto-slot[data-id="2"] { grid-column: 2 / span 2; grid-row: 1; }
+        /* Disposición tipo revista para 5 fotos */
+        .foto-slot[data-id="1"] { grid-column: 1;          grid-row: 1 / span 2; } /* tall izquierda */
+        .foto-slot[data-id="2"] { grid-column: 2 / span 2; grid-row: 1; }          /* ancha arriba */
         .foto-slot[data-id="3"] { grid-column: 2;          grid-row: 2; }
         .foto-slot[data-id="4"] { grid-column: 3;          grid-row: 2; }
-        .foto-slot[data-id="5"] { grid-column: 1;          grid-row: 3; }
-        .foto-slot[data-id="6"] { grid-column: 2 / span 2; grid-row: 3; }
-        .foto-slot[data-id="7"] { grid-column: 1 / span 2; grid-row: 4; }
-        .foto-slot[data-id="8"] { grid-column: 3;          grid-row: 4; }
+        .foto-slot[data-id="5"] { grid-column: 1 / span 3; grid-row: 3; }          /* full width abajo */
 
         .foto-slot {
             position: relative;
@@ -515,54 +541,54 @@
             background: var(--bg);
             overflow: hidden;
         }
-        .no-envios__inner { max-width: 900px; margin: 0 auto; }
+        .no-envios__inner { max-width: 860px; margin: 0 auto; }
 
         .no-envios__intro {
-            font-size: clamp(18px, 2vw, 24px);
-            color: var(--gray-lt); margin-bottom: 8px; font-weight: 400;
+            font-size: clamp(15px, 1.6vw, 19px);
+            color: var(--gray-lt); margin-bottom: 4px; font-weight: 400;
         }
         .no-envios__strike {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(72px, 12vw, 140px);
+            font-size: clamp(54px, 8.5vw, 104px);
             font-weight: 900; line-height: 1;
             color: var(--gray);
-            text-decoration: line-through;
-            text-decoration-color: rgba(255,80,80,0.6);
-            text-decoration-thickness: 6px;
-            display: block; margin-bottom: 40px;
-            opacity: 0; transform: translateX(-30px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: relative; display: inline-block;
+            margin-bottom: 28px;
+            opacity: 0; transform: translateX(-20px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .no-envios__strike::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 54%;
+            height: 5px; width: 0;
+            background: #FF4040;
+            border-radius: 3px;
+            transition: width 0.55s cubic-bezier(0.4,0,0.2,1) 0.25s;
         }
         .no-envios__strike.visible { opacity: 1; transform: translateX(0); }
+        .no-envios__strike.visible::after { width: 100%; }
 
         .no-envios__compra {
-            font-size: clamp(18px, 2vw, 24px);
-            color: var(--gray-lt); margin-bottom: 8px;
+            font-size: clamp(15px, 1.6vw, 19px);
+            color: var(--gray-lt); margin-bottom: 22px; font-weight: 400;
         }
 
-        .no-envios__item {
-            display: flex; align-items: center; gap: 20px;
-            padding: 18px 0; border-bottom: 1px solid var(--border);
-            opacity: 0; transform: translateX(-50px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .no-envios__item.visible { opacity: 1; transform: translateX(0); }
-        .no-envios__item:last-child { border-bottom: none; }
+        .ne-tags { display: flex; flex-wrap: wrap; gap: 12px; }
 
-        .no-envios__item__icon {
-            width: 52px; height: 52px; min-width: 52px;
-            background: rgba(255,210,0,.1); border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--yellow); font-size: 20px;
+        .ne-tag {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,210,0,.07);
+            border: 1px solid rgba(255,210,0,.22);
+            border-radius: 100px;
+            padding: 13px 22px;
+            font-size: clamp(15px, 1.8vw, 21px);
+            font-weight: 700; color: var(--white);
+            opacity: 0; transform: scale(0.82) translateY(12px);
+            transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
         }
-        .no-envios__item__text {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 900; color: var(--white); line-height: 1;
-        }
-        .no-envios__item__text em {
-            font-style: normal; color: var(--yellow);
-        }
+        .ne-tag.visible { opacity: 1; transform: scale(1) translateY(0); }
+        .ne-tag i { color: var(--yellow); font-size: 14px; flex-shrink: 0; }
 
         /* ─── ZONAS ─── */
         .zonas {
@@ -726,7 +752,9 @@
             .stats-bar { padding: 32px 24px; }
             .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .pain { padding: 64px 24px; }
-            .pain__grid { grid-template-columns: 1fr; }
+            .pain__layout { grid-template-columns: 1fr; gap: 32px; }
+            .pain__left { position: static; }
+            .pain__left .btn-wa-lg { display: none; }
             .journey { padding: 64px 0; }
             .journey__inner { padding: 0 24px; }
             .journey__truck { font-size: 30px; }
@@ -747,8 +775,8 @@
             .foto-slot[data-id] { grid-column: auto !important; grid-row: auto !important; }
             .foto-slot[data-id="1"],
             .foto-slot[data-id="2"],
-            .foto-slot[data-id="6"],
-            .foto-slot[data-id="7"] { grid-column: 1 / span 2 !important; grid-row: auto !important; height: 220px; }
+            .foto-slot[data-id="5"] { grid-column: 1 / span 2 !important; grid-row: auto !important; height: 220px; }
+            .no-envios { padding: 64px 24px; }
             .faq { padding: 64px 24px; }
             .cta-final { padding: 80px 24px; }
             footer { padding: 48px 24px 32px; }
@@ -900,52 +928,58 @@
     <!-- PAIN SECTION -->
     <section>
         <div class="pain">
-            <div class="section-header">
-                <span class="section-label">¿Te suena familiar?</span>
-                <h2 class="section-title">Tu logística actual<br>te está costando <em>plata</em></h2>
-                <p class="section-sub">Mercado Libre penaliza fuerte las entregas fuera de horario. Cada tarde es reputación perdida — y eso se traduce en menos ventas.</p>
-            </div>
-            <div class="pain__grid">
-                <div class="pain-card reveal">
-                    <div class="pain-card__icon"><i class="fas fa-clock"></i></div>
-                    <div>
-                        <div class="pain-card__title">Entregas fuera de horario</div>
-                        <div class="pain-card__text">Mercado Libre te penaliza y baja tu reputación. Cada tarde es plata que perdés.</div>
-                    </div>
+            <div class="pain__layout">
+                <div class="pain__left">
+                    <span class="pain__left-label">¿Te suena familiar?</span>
+                    <h2>Tu logística<br>te está costando <em>plata</em></h2>
+                    <p>Mercado Libre penaliza fuerte las entregas fuera de horario. Cada tarde es reputación perdida — y eso se traduce en menos ventas.</p>
+                    <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
+                       class="btn-wa-lg" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i> Resolver esto
+                    </a>
                 </div>
-                <div class="pain-card reveal">
-                    <div class="pain-card__icon"><i class="fas fa-comment-slash"></i></div>
-                    <div>
-                        <div class="pain-card__title">Mala comunicación</div>
-                        <div class="pain-card__text">No sabés dónde está tu paquete. El comprador tampoco. Resultado: reclamos y devoluciones.</div>
+                <div class="pain__right">
+                    <div class="pain-row reveal">
+                        <span class="pain-row__num">01</span>
+                        <div>
+                            <div class="pain-row__title">Entregas fuera de horario</div>
+                            <div class="pain-row__text">Mercado Libre te penaliza y baja tu reputación. Cada tarde es plata que perdés.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="pain-card reveal">
-                    <div class="pain-card__icon"><i class="fas fa-box-open"></i></div>
-                    <div>
-                        <div class="pain-card__title">Pérdidas y roturas</div>
-                        <div class="pain-card__text">Nadie se hace cargo. Vos absorbés el costo y la mala calificación.</div>
+                    <div class="pain-row reveal">
+                        <span class="pain-row__num">02</span>
+                        <div>
+                            <div class="pain-row__title">No sabés dónde está tu paquete</div>
+                            <div class="pain-row__text">El comprador tampoco. Resultado: reclamos y devoluciones que te consumen el tiempo.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="pain-card reveal">
-                    <div class="pain-card__icon"><i class="fas fa-ban"></i></div>
-                    <div>
-                        <div class="pain-card__title">No podés escalar</div>
-                        <div class="pain-card__text">A más volumen, más errores. Tu logística no crece con tu negocio.</div>
+                    <div class="pain-row reveal">
+                        <span class="pain-row__num">03</span>
+                        <div>
+                            <div class="pain-row__title">Pérdidas y roturas sin respuesta</div>
+                            <div class="pain-row__text">Nadie se hace cargo. Vos absorbés el costo y la mala calificación.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="pain-card reveal">
-                    <div class="pain-card__icon"><i class="fas fa-star-half-alt"></i></div>
-                    <div>
-                        <div class="pain-card__title">Reputación en riesgo</div>
-                        <div class="pain-card__text">Calificaciones bajas te sacan del ranking y perdés ventas orgánicas que costaron meses construir.</div>
+                    <div class="pain-row reveal">
+                        <span class="pain-row__num">04</span>
+                        <div>
+                            <div class="pain-row__title">No podés escalar</div>
+                            <div class="pain-row__text">A más volumen, más errores. Tu logística no crece con tu negocio.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="pain-card reveal">
-                    <div class="pain-card__icon"><i class="fas fa-headset"></i></div>
-                    <div>
-                        <div class="pain-card__title">Sin soporte humano</div>
-                        <div class="pain-card__text">Cuando hay un problema, no hay nadie del otro lado. Solo mails automáticos.</div>
+                    <div class="pain-row reveal">
+                        <span class="pain-row__num">05</span>
+                        <div>
+                            <div class="pain-row__title">Reputación en riesgo</div>
+                            <div class="pain-row__text">Calificaciones bajas te sacan del ranking y perdés ventas orgánicas que costaron meses construir.</div>
+                        </div>
+                    </div>
+                    <div class="pain-row reveal">
+                        <span class="pain-row__num">06</span>
+                        <div>
+                            <div class="pain-row__title">Sin soporte humano</div>
+                            <div class="pain-row__text">Cuando hay un problema, no hay nadie del otro lado. Solo mails automáticos.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1100,18 +1134,6 @@
                     <img alt="Equipo Shipment"><div class="foto-placeholder"><i class="fas fa-camera"></i><span>Clic para agregar foto</span></div>
                     <input type="file" accept="image/*" class="foto-input">
                 </div>
-                <div class="foto-slot reveal" data-id="6">
-                    <img alt="Equipo Shipment"><div class="foto-placeholder"><i class="fas fa-camera"></i><span>Clic para agregar foto</span></div>
-                    <input type="file" accept="image/*" class="foto-input">
-                </div>
-                <div class="foto-slot reveal" data-id="7">
-                    <img alt="Equipo Shipment"><div class="foto-placeholder"><i class="fas fa-camera"></i><span>Clic para agregar foto</span></div>
-                    <input type="file" accept="image/*" class="foto-input">
-                </div>
-                <div class="foto-slot reveal" data-id="8">
-                    <img alt="Equipo Shipment"><div class="foto-placeholder"><i class="fas fa-camera"></i><span>Clic para agregar foto</span></div>
-                    <input type="file" accept="image/*" class="foto-input">
-                </div>
             </div>
 
             <div class="equipo__admin">
@@ -1129,26 +1151,12 @@
             <p class="no-envios__intro">El cliente no compra</p>
             <span class="no-envios__strike" id="strike-word">envíos.</span>
             <p class="no-envios__compra">Compra:</p>
-
-            <div class="no-envios__item ne-item">
-                <div class="no-envios__item__icon"><i class="fas fa-dove"></i></div>
-                <div class="no-envios__item__text">Tranquilidad</div>
-            </div>
-            <div class="no-envios__item ne-item">
-                <div class="no-envios__item__icon"><i class="fas fa-check-double"></i></div>
-                <div class="no-envios__item__text">Cumplimiento</div>
-            </div>
-            <div class="no-envios__item ne-item">
-                <div class="no-envios__item__icon"><i class="fas fa-star"></i></div>
-                <div class="no-envios__item__text">Reputación</div>
-            </div>
-            <div class="no-envios__item ne-item">
-                <div class="no-envios__item__icon"><i class="fas fa-arrow-trend-up"></i></div>
-                <div class="no-envios__item__text">Escalabilidad</div>
-            </div>
-            <div class="no-envios__item ne-item">
-                <div class="no-envios__item__icon"><i class="fas fa-face-smile"></i></div>
-                <div class="no-envios__item__text"><em>Menos</em> quilombos operativos</div>
+            <div class="ne-tags">
+                <span class="ne-tag ne-item"><i class="fas fa-dove"></i> Tranquilidad</span>
+                <span class="ne-tag ne-item"><i class="fas fa-check-double"></i> Cumplimiento</span>
+                <span class="ne-tag ne-item"><i class="fas fa-star"></i> Reputación</span>
+                <span class="ne-tag ne-item"><i class="fas fa-arrow-trend-up"></i> Escalabilidad</span>
+                <span class="ne-tag ne-item"><i class="fas fa-face-smile"></i> Menos quilombos</span>
             </div>
         </div>
     </section>
@@ -1454,20 +1462,21 @@
         function resetNoEnvios() {
             neTimers.forEach(clearTimeout);
             neTimers = [];
-            document.getElementById('strike-word').classList.remove('visible');
-            document.querySelectorAll('.ne-item').forEach(el => el.classList.remove('visible'));
+            const strike = document.getElementById('strike-word');
+            if (strike) strike.classList.remove('visible');
+            document.querySelectorAll('.ne-tag').forEach(el => el.classList.remove('visible'));
         }
 
         function runNoEnvios() {
             resetNoEnvios();
             const strike = document.getElementById('strike-word');
-            const items  = document.querySelectorAll('.ne-item');
+            const tags   = document.querySelectorAll('.ne-tag');
 
-            const t0 = setTimeout(() => strike.classList.add('visible'), 100);
+            const t0 = setTimeout(() => { if (strike) strike.classList.add('visible'); }, 100);
             neTimers.push(t0);
 
-            items.forEach((item, i) => {
-                const t = setTimeout(() => item.classList.add('visible'), 350 + i * 180);
+            tags.forEach((tag, i) => {
+                const t = setTimeout(() => tag.classList.add('visible'), 480 + i * 130);
                 neTimers.push(t);
             });
         }
