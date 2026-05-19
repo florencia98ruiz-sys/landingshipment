@@ -17,8 +17,9 @@
             --surface:    #0C1A2E;
             --surface-2:  #112240;
             --blue:       #0044CC;
-            --blue-light: #2563EB;
+            --blue-lt:    #2563EB;
             --accent:     #4A90FF;
+            --yellow:     #FFD200;
             --white:      #FFFFFF;
             --gray-lt:    #94A3B8;
             --gray:       #475569;
@@ -47,481 +48,427 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 60px;
-            background: rgba(6,16,30,0.93);
+            padding: 14px 60px;
+            background: rgba(6,16,30,0.95);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
         }
-
-        .navbar__logo img { height: 48px; width: auto; display: block; }
+        .navbar__logo img { height: 46px; width: auto; display: block; }
         .navbar__logo-fallback {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--white);
-            text-decoration: none;
+            font-size: 22px; font-weight: 800; letter-spacing: 1px;
+            color: var(--white); text-decoration: none;
         }
-
-        .navbar__links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
+        .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
         .navbar__links a {
-            color: var(--gray-lt);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color var(--ease);
+            color: var(--gray-lt); text-decoration: none;
+            font-size: 14px; font-weight: 500; transition: color var(--ease);
         }
         .navbar__links a:hover { color: var(--white); }
-
         .btn-wa-sm {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--wa);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--wa); color: #fff;
+            padding: 10px 20px; border-radius: 8px;
+            text-decoration: none; font-size: 14px; font-weight: 700;
             transition: var(--ease);
         }
         .btn-wa-sm:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
         .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 4px;
-            background: none;
-            border: none;
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; padding: 4px; background: none; border: none;
         }
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--white);
-            border-radius: 2px;
-        }
-
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
         .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 80px;
-            inset-inline: 0;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 24px;
-            flex-direction: column;
-            gap: 16px;
-            z-index: 99;
+            display: none; position: fixed; top: 74px; inset-inline: 0;
+            background: var(--surface); border-bottom: 1px solid var(--border);
+            padding: 20px 24px; flex-direction: column; gap: 12px; z-index: 99;
         }
         .mobile-menu.open { display: flex; }
         .mobile-menu a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border);
+            color: var(--white); text-decoration: none;
+            font-size: 16px; font-weight: 500;
+            padding: 10px 0; border-bottom: 1px solid var(--border);
         }
         .mobile-menu .btn-wa-sm { justify-content: center; padding: 14px; border-radius: var(--r); }
 
         /* ─── HERO ─── */
         .hero {
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 130px 60px 80px;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 40px;
+            align-items: center;
+            padding: 120px 60px 80px;
             position: relative;
             overflow: hidden;
         }
         .hero::before {
             content: '';
-            position: absolute;
-            top: -150px; right: -150px;
-            width: 650px; height: 650px;
-            background: radial-gradient(circle, rgba(0,68,204,.22) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -100px; left: -100px;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(0,51,160,.12) 0%, transparent 70%);
+            position: absolute; top: -200px; left: -100px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,68,204,.18) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .hero__badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0,68,204,.18);
-            border: 1px solid rgba(0,68,204,.4);
-            color: var(--accent);
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 28px;
-            width: fit-content;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,210,0,.1);
+            border: 1px solid rgba(255,210,0,.3);
+            color: var(--yellow);
+            padding: 6px 14px; border-radius: 100px;
+            font-size: 13px; font-weight: 600; margin-bottom: 24px; width: fit-content;
         }
         .hero__badge i { font-size: 8px; color: #22C55E; }
 
         .hero h1 {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(46px, 7vw, 86px);
-            font-weight: 800;
-            line-height: 1.0;
-            max-width: 820px;
-            margin-bottom: 24px;
+            font-size: clamp(44px, 6.5vw, 82px);
+            font-weight: 900; line-height: 1.0; margin-bottom: 10px;
         }
-        .hero h1 em {
-            font-style: normal;
-            color: var(--accent);
+        .hero h1 em { font-style: normal; color: var(--yellow); }
+
+        .hero__tagline {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(20px, 2.5vw, 28px);
+            font-weight: 600; color: var(--gray-lt); margin-bottom: 24px;
         }
+        .hero__tagline strong { color: var(--white); }
 
         .hero__sub {
-            font-size: clamp(15px, 2vw, 19px);
-            color: var(--gray-lt);
-            max-width: 540px;
-            margin-bottom: 40px;
-            line-height: 1.75;
+            font-size: 16px; color: var(--gray-lt);
+            max-width: 500px; margin-bottom: 36px; line-height: 1.75;
         }
-
-        .hero__ctas {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
+        .hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
 
         .btn-wa-lg {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--wa);
-            color: #fff;
-            padding: 17px 34px;
-            border-radius: var(--r);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 700;
-            box-shadow: 0 4px 24px rgba(37,211,102,.3);
-            transition: var(--ease);
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--wa); color: #fff;
+            padding: 16px 32px; border-radius: var(--r);
+            text-decoration: none; font-size: 16px; font-weight: 700;
+            box-shadow: 0 4px 24px rgba(37,211,102,.3); transition: var(--ease);
         }
-        .btn-wa-lg:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,.4); }
+        .btn-wa-lg:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,.42); }
 
         .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: var(--white);
-            padding: 17px 34px;
-            border-radius: var(--r);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            border: 1px solid var(--border);
-            transition: var(--ease);
+            display: inline-flex; align-items: center; gap: 10px;
+            background: transparent; color: var(--white);
+            padding: 16px 32px; border-radius: var(--r);
+            text-decoration: none; font-size: 16px; font-weight: 600;
+            border: 1px solid var(--border); transition: var(--ease);
         }
         .btn-ghost:hover { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.05); }
 
-        .hero__note {
-            font-size: 13px;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .hero__note { font-size: 13px; color: var(--gray); display: flex; align-items: center; gap: 6px; }
         .hero__note i { color: #22C55E; }
 
-        /* ─── STATS BAR ─── */
-        .stats-bar {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 36px 60px;
-        }
-        .stats-bar__grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .stat {
-            text-align: center;
-        }
-        .stat__num {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 52px;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 6px;
-            color: var(--accent);
-        }
-        .stat__label {
-            font-size: 14px;
-            color: var(--gray-lt);
-            font-weight: 500;
-        }
+        /* ─── TRACKING CARD (hero right) ─── */
+        .hero__visual { display: flex; align-items: center; justify-content: center; }
 
-        /* ─── SECTION COMMONS ─── */
-        .section-label {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 14px;
-        }
-        .section-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(34px, 5vw, 58px);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 16px;
-        }
-        .section-sub {
-            font-size: 17px;
-            color: var(--gray-lt);
-            max-width: 540px;
-            margin: 0 auto;
-            line-height: 1.75;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-
-        /* ─── PAIN ─── */
-        .pain {
-            padding: 100px 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .pain__grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-        .pain-card {
+        .track-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--r-lg);
             padding: 28px;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            transition: var(--ease);
+            width: 100%; max-width: 340px;
+            box-shadow: 0 24px 60px rgba(0,0,0,.4);
+            position: relative;
+            overflow: hidden;
         }
-        .pain-card:hover {
-            border-color: rgba(255,80,80,.3);
-            background: rgba(255,50,50,.04);
+        .track-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--yellow));
         }
+        .track-card__header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 24px;
+        }
+        .track-card__id { font-size: 12px; color: var(--gray-lt); font-weight: 600; }
+        .track-card__live {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 11px; font-weight: 700; color: #22C55E;
+        }
+        .live-dot {
+            width: 7px; height: 7px; border-radius: 50%; background: #22C55E;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .track-step {
+            display: flex; gap: 14px; align-items: flex-start;
+            padding: 12px 0; position: relative;
+        }
+        .track-step + .track-step::before {
+            content: '';
+            position: absolute; left: 15px; top: 0;
+            width: 2px; height: 14px;
+            background: var(--border);
+            transform: translateY(-12px);
+        }
+        .track-step.done + .track-step::before { background: rgba(255,210,0,.3); }
+
+        .track-step__dot {
+            width: 32px; height: 32px; min-width: 32px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+        }
+        .track-step.done   .track-step__dot { background: rgba(255,210,0,.15); color: var(--yellow); border: 1px solid rgba(255,210,0,.4); }
+        .track-step.active .track-step__dot {
+            background: var(--yellow); color: var(--bg);
+            animation: ring-pulse 2s ease-in-out infinite;
+        }
+        .track-step.pending .track-step__dot { background: var(--surface-2); color: var(--gray); border: 1px solid var(--border); }
+
+        @keyframes ring-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,210,0,.5); }
+            50% { box-shadow: 0 0 0 8px rgba(255,210,0,0); }
+        }
+
+        .track-step__label { font-size: 14px; font-weight: 600; color: var(--white); }
+        .track-step.pending .track-step__label { color: var(--gray-lt); }
+        .track-step__time { font-size: 12px; color: var(--gray-lt); margin-top: 2px; }
+        .track-step.active .track-step__time { color: var(--yellow); }
+
+        .track-card__footer {
+            margin-top: 20px; padding-top: 16px;
+            border-top: 1px solid var(--border);
+            font-size: 12px; color: #22C55E;
+            display: flex; align-items: center; gap: 6px; font-weight: 600;
+        }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar {
+            background: var(--yellow);
+            padding: 28px 60px;
+        }
+        .stats-bar__grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 32px; max-width: 1100px; margin: 0 auto;
+        }
+        .stat { text-align: center; }
+        .stat__num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 52px; font-weight: 900; line-height: 1;
+            margin-bottom: 4px; color: var(--bg);
+        }
+        .stat__label { font-size: 14px; color: rgba(6,16,30,.7); font-weight: 600; }
+
+        /* ─── SECTION COMMONS ─── */
+        .section-label {
+            display: inline-block; font-size: 12px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--yellow); margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(34px, 5vw, 58px); font-weight: 800;
+            line-height: 1.1; margin-bottom: 16px;
+        }
+        .section-title em { font-style: normal; color: var(--yellow); }
+        .section-sub {
+            font-size: 17px; color: var(--gray-lt);
+            max-width: 540px; margin: 0 auto; line-height: 1.75;
+        }
+        .section-header { text-align: center; margin-bottom: 56px; }
+
+        /* ─── PAIN ─── */
+        .pain { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+        .pain__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .pain-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--r-lg); padding: 28px;
+            display: flex; gap: 16px; align-items: flex-start; transition: var(--ease);
+        }
+        .pain-card:hover { border-color: rgba(255,80,80,.3); background: rgba(255,50,50,.04); }
         .pain-card__icon {
             width: 42px; height: 42px; min-width: 42px;
-            background: rgba(255,80,80,.14);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FF6B6B;
-            font-size: 18px;
+            background: rgba(255,80,80,.12); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #FF6B6B; font-size: 18px;
         }
         .pain-card__title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
         .pain-card__text  { font-size: 13px; color: var(--gray-lt); line-height: 1.65; }
 
+        /* ─── JOURNEY (truck road animation) ─── */
+        .journey {
+            padding: 100px 0;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .journey__inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+
+        .journey__track-wrap { margin-top: 60px; position: relative; }
+
+        /* The dashed road */
+        .journey__road {
+            position: absolute;
+            top: 28px; left: 0; right: 0;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(255,210,0,.5) 0, rgba(255,210,0,.5) 22px,
+                transparent 22px, transparent 38px
+            );
+        }
+
+        /* The animated truck */
+        .journey__truck {
+            position: absolute;
+            top: 8px; left: -80px;
+            font-size: 40px;
+            color: var(--yellow);
+            transition: left 3s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 4px 16px rgba(255,210,0,.5));
+            z-index: 2;
+        }
+        .journey__truck.drive { left: calc(100% - 40px); }
+
+        /* Stops */
+        .journey__stops {
+            display: flex; justify-content: space-between; position: relative;
+        }
+        .jstop {
+            display: flex; flex-direction: column;
+            align-items: center; flex: 1;
+        }
+        .jstop__dot {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: var(--bg); border: 3px solid var(--gray);
+            margin-top: 16px; position: relative; z-index: 1;
+            transition: all 0.5s ease;
+        }
+        .jstop.active .jstop__dot {
+            border-color: var(--yellow); background: var(--yellow);
+            box-shadow: 0 0 0 8px rgba(255,210,0,.2);
+        }
+        .jstop__content {
+            margin-top: 28px; text-align: center; padding: 0 16px;
+        }
+        .jstop__icon {
+            font-size: 32px; color: var(--gray);
+            margin-bottom: 12px; transition: color 0.5s ease;
+        }
+        .jstop.active .jstop__icon { color: var(--yellow); }
+        .jstop__title {
+            font-weight: 700; font-size: 16px; color: var(--gray-lt);
+            margin-bottom: 8px; transition: color 0.5s ease;
+        }
+        .jstop.active .jstop__title { color: var(--white); }
+        .jstop__desc {
+            font-size: 13px; color: var(--gray); line-height: 1.6;
+            max-width: 200px; margin: 0 auto; transition: color 0.5s ease;
+        }
+        .jstop.active .jstop__desc { color: var(--gray-lt); }
+
         /* ─── DIFFERENTIALS ─── */
         .differentials {
             padding: 100px 60px;
-            background: var(--surface);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
         .differentials__inner { max-width: 1200px; margin: 0 auto; }
-
-        .diff-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
+        .diff-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .diff-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--r-lg);
-            padding: 32px 24px;
-            text-align: center;
-            transition: var(--ease);
-            position: relative;
-            overflow: hidden;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--r-lg); padding: 32px 24px;
+            text-align: center; transition: var(--ease);
+            position: relative; overflow: hidden;
         }
         .diff-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #003A9E, var(--blue-light));
-            opacity: 0;
-            transition: var(--ease);
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--yellow));
+            opacity: 0; transition: var(--ease);
         }
-        .diff-card:hover {
-            border-color: rgba(0,68,204,.4);
-            transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(0,68,204,.14);
-        }
+        .diff-card:hover { border-color: rgba(255,210,0,.25); transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.2); }
         .diff-card:hover::after { opacity: 1; }
-
         .diff-card__icon {
             width: 56px; height: 56px;
-            background: rgba(0,68,204,.14);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: var(--accent);
-            margin: 0 auto 20px;
+            background: rgba(255,210,0,.1); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: var(--yellow); margin: 0 auto 20px;
         }
         .diff-card__title { font-weight: 700; font-size: 15px; margin-bottom: 10px; }
         .diff-card__text  { font-size: 13px; color: var(--gray-lt); line-height: 1.65; }
 
-        /* ─── HOW IT WORKS ─── */
-        .how { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
-
-        .how__steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-            position: relative;
+        /* ─── YELLOW CALLOUT BAND ─── */
+        .callout-band {
+            background: var(--yellow);
+            padding: 60px 60px;
         }
-        .how__steps::before {
-            content: '';
-            position: absolute;
-            top: 36px;
-            left: calc(16.66% + 20px);
-            right: calc(16.66% + 20px);
-            height: 1px;
-            background: linear-gradient(90deg, #003A9E, var(--blue-light), #003A9E);
-            opacity: 0.35;
+        .callout-band__inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; gap: 40px;
         }
-        .step { text-align: center; }
-        .step__num {
-            width: 72px; height: 72px;
-            border: 2px solid var(--blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .callout-band__text {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--accent);
-            margin: 0 auto 24px;
-            background: var(--bg);
-            position: relative;
-            z-index: 1;
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 900; line-height: 1.1; color: var(--bg);
         }
-        .step__title { font-weight: 700; font-size: 18px; margin-bottom: 12px; }
-        .step__text  { font-size: 14px; color: var(--gray-lt); line-height: 1.75; }
+        .callout-band__sub { font-size: 16px; color: rgba(6,16,30,.65); margin-top: 8px; font-weight: 500; }
+        .btn-dark {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--bg); color: var(--white);
+            padding: 18px 36px; border-radius: var(--r);
+            text-decoration: none; font-size: 16px; font-weight: 700;
+            white-space: nowrap; transition: var(--ease);
+            flex-shrink: 0;
+        }
+        .btn-dark:hover { background: var(--surface-2); transform: translateY(-2px); }
 
         /* ─── ZONAS ─── */
         .zonas {
             padding: 100px 60px;
             background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
         }
         .zonas__inner { max-width: 1100px; margin: 0 auto; }
-        .zonas__grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-        .zonas__left h3 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
+        .zonas__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .zonas__left h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; margin-bottom: 8px; }
         .zonas__sub { font-size: 15px; color: var(--gray-lt); margin-bottom: 28px; }
-
         .zona-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
         .zona-list li { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; }
-        .zona-list li i { color: var(--accent); width: 18px; }
-
+        .zona-list li i { color: var(--yellow); width: 18px; }
         .zonas__right { display: flex; flex-direction: column; gap: 14px; }
         .zona-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
+            background: var(--bg); border: 1px solid var(--border); border-radius: var(--r);
+            padding: 20px 24px; display: flex; align-items: center; gap: 16px;
+            transition: var(--ease);
         }
+        .zona-card:hover { border-color: rgba(255,210,0,.25); }
         .zona-card__icon {
             width: 44px; height: 44px; min-width: 44px;
-            background: rgba(0,68,204,.14);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 19px;
+            background: rgba(255,210,0,.1); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--yellow); font-size: 19px;
         }
         .zona-card__title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
         .zona-card__sub   { font-size: 13px; color: var(--gray-lt); }
 
         /* ─── TESTIMONIOS ─── */
         .testimonios { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
-        .testimonios__grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+        .testimonios__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .tcard {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--r-lg);
-            padding: 32px;
-            position: relative;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--r-lg); padding: 32px; position: relative;
         }
         .tcard::before {
-            content: '"';
-            position: absolute;
-            top: 12px; right: 24px;
-            font-size: 90px;
-            color: rgba(74,144,255,.12);
-            font-family: Georgia, serif;
-            line-height: 1;
+            content: '"'; position: absolute; top: 12px; right: 24px;
+            font-size: 90px; color: rgba(255,210,0,.1);
+            font-family: Georgia, serif; line-height: 1;
         }
-        .tcard__stars { color: #F59E0B; font-size: 14px; margin-bottom: 16px; }
+        .tcard__stars { color: var(--yellow); font-size: 14px; margin-bottom: 16px; }
         .tcard__text  { font-size: 15px; color: var(--gray-lt); line-height: 1.75; margin-bottom: 24px; font-style: italic; }
         .tcard__author { display: flex; align-items: center; gap: 12px; }
         .tcard__av {
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            background: var(--surface-2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--accent);
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255,210,0,.1); border: 1px solid rgba(255,210,0,.3);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 18px; color: var(--yellow);
         }
         .tcard__name { font-weight: 700; font-size: 14px; }
         .tcard__biz  { font-size: 12px; color: var(--gray-lt); }
@@ -530,194 +477,125 @@
         .faq {
             padding: 100px 60px;
             background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
         }
         .faq__inner { max-width: 780px; margin: 0 auto; }
-
         .faq-item { border-bottom: 1px solid var(--border); }
         .faq-item:last-child { border-bottom: none; }
-
         .faq-q {
-            width: 100%;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            text-align: left;
-            padding: 24px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
+            width: 100%; background: none; border: none; color: var(--white);
+            font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700;
+            text-align: left; padding: 24px 0; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center; gap: 16px;
         }
-        .faq-q i { color: var(--accent); transition: transform var(--ease); flex-shrink: 0; }
+        .faq-q i { color: var(--yellow); transition: transform var(--ease); flex-shrink: 0; }
         .faq-q[aria-expanded="true"] i { transform: rotate(180deg); }
-
         .faq-a {
-            font-size: 15px;
-            color: var(--gray-lt);
-            line-height: 1.75;
-            padding-bottom: 24px;
-            display: none;
+            font-size: 15px; color: var(--gray-lt);
+            line-height: 1.75; padding-bottom: 24px; display: none;
         }
         .faq-a.open { display: block; }
 
         /* ─── CTA FINAL ─── */
         .cta-final {
-            padding: 120px 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 120px 60px; text-align: center;
+            position: relative; overflow: hidden;
         }
         .cta-final::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
+            content: ''; position: absolute; top: 50%; left: 50%;
             transform: translate(-50%,-50%);
             width: 800px; height: 600px;
-            background: radial-gradient(ellipse, rgba(0,68,204,.18) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(255,210,0,.07) 0%, transparent 70%);
             pointer-events: none;
         }
         .cta-final__inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
         .cta-final h2 {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(38px, 6vw, 70px);
-            font-weight: 800;
-            line-height: 1.05;
-            margin-bottom: 18px;
+            font-size: clamp(38px, 6vw, 70px); font-weight: 900;
+            line-height: 1.05; margin-bottom: 18px;
         }
-        .cta-final h2 em { font-style: normal; color: var(--accent); }
+        .cta-final h2 em { font-style: normal; color: var(--yellow); }
         .cta-final__sub { font-size: 18px; color: var(--gray-lt); margin-bottom: 40px; line-height: 1.75; }
-
         .btn-wa-xl {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--wa);
-            color: #fff;
-            padding: 20px 48px;
-            border-radius: var(--r);
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
-            box-shadow: 0 4px 32px rgba(37,211,102,.35);
-            transition: var(--ease);
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--wa); color: #fff;
+            padding: 20px 48px; border-radius: var(--r);
+            text-decoration: none; font-size: 18px; font-weight: 700;
+            box-shadow: 0 4px 32px rgba(37,211,102,.35); transition: var(--ease);
         }
         .btn-wa-xl:hover { filter: brightness(1.1); transform: translateY(-3px); box-shadow: 0 12px 44px rgba(37,211,102,.45); }
         .cta-final__note { margin-top: 18px; font-size: 13px; color: var(--gray); }
 
         /* ─── FOOTER ─── */
-        footer {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            padding: 56px 60px 32px;
-        }
+        footer { background: var(--surface); border-top: 1px solid var(--border); padding: 56px 60px 32px; }
         .footer__inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 48px;
-            margin-bottom: 40px;
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px;
         }
         .footer__brand img { height: 48px; margin-bottom: 16px; }
         .footer__brand p   { font-size: 14px; color: var(--gray-lt); line-height: 1.75; max-width: 300px; }
         .footer__col h4 {
-            font-weight: 700;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--gray-lt);
-            margin-bottom: 16px;
+            font-weight: 700; font-size: 11px; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--gray-lt); margin-bottom: 16px;
         }
         .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
         .footer__col ul li { font-size: 14px; color: var(--gray-lt); }
         .footer__col ul li a { color: var(--gray-lt); text-decoration: none; transition: color var(--ease); }
         .footer__col ul li a:hover { color: var(--white); }
-
         .footer__bottom {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding-top: 24px;
+            max-width: 1100px; margin: 0 auto; padding-top: 24px;
             border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
         .footer__bottom p { font-size: 12px; color: var(--gray); }
 
         /* ─── FLOATING WA ─── */
         .float-wa {
-            position: fixed;
-            bottom: 28px; right: 28px;
-            z-index: 200;
-            width: 60px; height: 60px;
-            background: var(--wa);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 28px;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(37,211,102,.4);
-            transition: var(--ease);
+            position: fixed; bottom: 28px; right: 28px; z-index: 200;
+            width: 60px; height: 60px; background: var(--wa);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 28px; text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,.4); transition: var(--ease);
         }
         .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
 
-        /* ─── ANIMATE IN ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* ─── REVEAL ANIMATION ─── */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; padding-top: 110px; }
+            .hero__visual { display: none; }
             .diff-grid { grid-template-columns: repeat(2, 1fr); }
             .footer__inner { grid-template-columns: 1fr 1fr; }
+            .callout-band__inner { flex-direction: column; text-align: center; }
         }
-
         @media (max-width: 768px) {
             .navbar { padding: 14px 24px; }
-            .navbar__links, .navbar__links ~ .btn-wa-sm { display: none; }
+            .navbar__links { display: none; }
             .hamburger { display: flex; }
-
-            .hero { padding: 105px 24px 60px; }
+            .hero { padding: 100px 24px 60px; }
             .hero h1 { font-size: 46px; }
             .hero__ctas { flex-direction: column; }
             .btn-wa-lg, .btn-ghost { justify-content: center; }
-
             .stats-bar { padding: 32px 24px; }
-            .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-
+            .stats-bar__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .pain { padding: 64px 24px; }
             .pain__grid { grid-template-columns: 1fr; }
-
+            .journey { padding: 64px 0; }
+            .journey__inner { padding: 0 24px; }
+            .journey__truck { font-size: 30px; }
+            .jstop__desc { display: none; }
             .differentials { padding: 64px 24px; }
             .diff-grid { grid-template-columns: 1fr; }
-
-            .how { padding: 64px 24px; }
-            .how__steps { grid-template-columns: 1fr; gap: 32px; }
-            .how__steps::before { display: none; }
-
+            .callout-band { padding: 48px 24px; }
             .zonas { padding: 64px 24px; }
             .zonas__grid { grid-template-columns: 1fr; gap: 40px; }
-
             .testimonios { padding: 64px 24px; }
             .testimonios__grid { grid-template-columns: 1fr; }
-
             .faq { padding: 64px 24px; }
             .cta-final { padding: 80px 24px; }
-
             footer { padding: 48px 24px 32px; }
             .footer__inner { grid-template-columns: 1fr; gap: 32px; }
             .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
@@ -728,14 +606,14 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="#" class="navbar__logo" id="logo-wrap">
+        <a href="#" class="navbar__logo">
             <img src="logo.png" alt="Shipment Logística"
                  onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
             <span id="logo-text" class="navbar__logo-fallback" style="display:none">SHIPMENT LOGÍSTICA</span>
         </a>
-
         <ul class="navbar__links">
             <li><a href="#diferencial">Por qué Shipment</a></li>
+            <li><a href="#ruta">Cómo funciona</a></li>
             <li><a href="#zonas">Zonas</a></li>
             <li><a href="#testimonios">Testimonios</a></li>
             <li>
@@ -745,7 +623,6 @@
                 </a>
             </li>
         </ul>
-
         <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
             <span></span><span></span><span></span>
         </button>
@@ -754,6 +631,7 @@
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobile-menu">
         <a href="#diferencial" onclick="closeMenu()">Por qué Shipment</a>
+        <a href="#ruta"        onclick="closeMenu()">Cómo funciona</a>
         <a href="#zonas"       onclick="closeMenu()">Zonas</a>
         <a href="#testimonios" onclick="closeMenu()">Testimonios</a>
         <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
@@ -764,51 +642,101 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="hero__badge">
-            <i class="fas fa-circle"></i>
-            Operando en CABA, Zona Sur y La Plata
+        <div class="hero__content">
+            <div class="hero__badge">
+                <i class="fas fa-circle"></i>
+                Envíos a CABA y GBA · Mercado Flex · E-commerce
+            </div>
+
+            <h1>Un buen envío vale<br>más de lo que <em>pensás</em></h1>
+
+            <p class="hero__tagline">Un cliente feliz <strong>vuelve a comprar.</strong></p>
+
+            <p class="hero__sub">
+                Con Shipment, cada entrega suma a tu reputación. Cumplimos los horarios Flex
+                todos los días — entregas en el día, atención directa, sin excusas.
+            </p>
+
+            <div class="hero__ctas">
+                <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
+                   class="btn-wa-lg" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> Quiero cotizar ahora
+                </a>
+                <a href="#ruta" class="btn-ghost">
+                    Ver cómo funciona <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+
+            <p class="hero__note">
+                <i class="fas fa-check-circle"></i>
+                Trabajamos con negocios que hacen mínimo 15 envíos diarios
+            </p>
         </div>
 
-        <h1>Tu logística no puede hacerte perder <em>reputación en Mercado Libre</em></h1>
+        <!-- Tracking card (desktop) -->
+        <div class="hero__visual">
+            <div class="track-card">
+                <div class="track-card__header">
+                    <span class="track-card__id">ENV-2841 · Hoy</span>
+                    <span class="track-card__live">
+                        <span class="live-dot"></span> EN VIVO
+                    </span>
+                </div>
 
-        <p class="hero__sub">
-            Cumplimos los horarios Flex todos los días. Sin excusas.<br>
-            +50 vehículos, atención directa y operación diseñada para escalar con tu negocio.
-        </p>
+                <div class="track-step done">
+                    <div class="track-step__dot"><i class="fas fa-box"></i></div>
+                    <div>
+                        <div class="track-step__label">Paquete retirado</div>
+                        <div class="track-step__time">08:30 hs · Avellaneda</div>
+                    </div>
+                </div>
+                <div class="track-step done">
+                    <div class="track-step__dot"><i class="fas fa-warehouse"></i></div>
+                    <div>
+                        <div class="track-step__label">En centro de distribución</div>
+                        <div class="track-step__time">09:45 hs · Clasificado</div>
+                    </div>
+                </div>
+                <div class="track-step active">
+                    <div class="track-step__dot"><i class="fas fa-truck"></i></div>
+                    <div>
+                        <div class="track-step__label">En camino al destino</div>
+                        <div class="track-step__time">En progreso...</div>
+                    </div>
+                </div>
+                <div class="track-step pending">
+                    <div class="track-step__dot"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <div class="track-step__label">Entregado en horario Flex</div>
+                        <div class="track-step__time">Estimado: 14:00 hs</div>
+                    </div>
+                </div>
 
-        <div class="hero__ctas">
-            <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
-               class="btn-wa-lg" target="_blank" rel="noopener">
-                <i class="fab fa-whatsapp"></i> Quiero cotizar ahora
-            </a>
-            <a href="#diferencial" class="btn-ghost">
-                Ver diferenciales <i class="fas fa-arrow-down"></i>
-            </a>
+                <div class="track-card__footer">
+                    <i class="fas fa-shield-alt"></i>
+                    Sin penalizaciones de Mercado Libre
+                </div>
+            </div>
         </div>
-
-        <p class="hero__note">
-            <i class="fas fa-check-circle"></i>
-            Trabajamos con negocios que hacen mínimo 15 envíos diarios
-        </p>
     </section>
 
     <!-- STATS BAR -->
     <div class="stats-bar">
         <div class="stats-bar__grid">
             <div class="stat">
-                <div class="stat__num">+50</div>
+                <div class="stat__num" data-target="50">0</div>
                 <div class="stat__label">Vehículos operando</div>
             </div>
             <div class="stat">
-                <div class="stat__num">+450</div>
+                <div class="stat__num" data-target="450">0</div>
                 <div class="stat__label">Envíos diarios</div>
             </div>
             <div class="stat">
-                <div class="stat__num">3</div>
+                <div class="stat__num" data-target="3">0</div>
                 <div class="stat__label">Zonas de cobertura</div>
             </div>
             <div class="stat">
-                <div class="stat__num">6</div>
+                <div class="stat__num" data-target="6">0</div>
                 <div class="stat__label">Días a la semana</div>
             </div>
         </div>
@@ -819,7 +747,7 @@
         <div class="pain">
             <div class="section-header">
                 <span class="section-label">¿Te suena familiar?</span>
-                <h2 class="section-title">Tu logística actual<br>te está costando plata</h2>
+                <h2 class="section-title">Tu logística actual<br>te está costando <em>plata</em></h2>
                 <p class="section-sub">Mercado Libre penaliza fuerte las entregas fuera de horario. Cada tarde es reputación perdida — y eso se traduce en menos ventas.</p>
             </div>
             <div class="pain__grid">
@@ -862,7 +790,56 @@
                     <div class="pain-card__icon"><i class="fas fa-headset"></i></div>
                     <div>
                         <div class="pain-card__title">Sin soporte humano</div>
-                        <div class="pain-card__text">Cuando hay un problema, no hay nadie del otro lado. Solo mails automáticos y tiempos de respuesta eternos.</div>
+                        <div class="pain-card__text">Cuando hay un problema, no hay nadie del otro lado. Solo mails automáticos.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY SECTION (truck animation) -->
+    <section class="journey" id="ruta">
+        <div class="journey__inner">
+            <div class="section-header">
+                <span class="section-label">Cómo funciona cada entrega</span>
+                <h2 class="section-title">De tu depósito al comprador.<br><em>Sin fallas.</em></h2>
+                <p class="section-sub">Tres fases. Una operación. Tu reputación protegida todos los días.</p>
+            </div>
+
+            <div class="journey__track-wrap">
+                <!-- Road line -->
+                <div class="journey__road"></div>
+
+                <!-- Truck -->
+                <div class="journey__truck" id="journey-truck">
+                    <i class="fas fa-truck"></i>
+                </div>
+
+                <!-- Stops -->
+                <div class="journey__stops">
+                    <div class="jstop" data-delay="0">
+                        <div class="jstop__dot"></div>
+                        <div class="jstop__content">
+                            <div class="jstop__icon"><i class="fas fa-box"></i></div>
+                            <div class="jstop__title">Retiro del paquete</div>
+                            <div class="jstop__desc">Pasamos a buscar por tu depósito en horario coordinado</div>
+                        </div>
+                    </div>
+                    <div class="jstop" data-delay="1">
+                        <div class="jstop__dot"></div>
+                        <div class="jstop__content">
+                            <div class="jstop__icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="jstop__title">Centro de distribución</div>
+                            <div class="jstop__desc">Clasificamos, organizamos rutas y preparamos la salida</div>
+                        </div>
+                    </div>
+                    <div class="jstop" data-delay="2">
+                        <div class="jstop__dot"></div>
+                        <div class="jstop__content">
+                            <div class="jstop__icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="jstop__title">Entrega en horario</div>
+                            <div class="jstop__desc">Dentro del horario Flex. Sin penalizaciones. Cliente notificado.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -874,7 +851,7 @@
         <div class="differentials__inner">
             <div class="section-header">
                 <span class="section-label">Por qué Shipment</span>
-                <h2 class="section-title">La logística que cuida<br>tu reputación</h2>
+                <h2 class="section-title">La logística que <em>no te falla</em></h2>
                 <p class="section-sub">No prometemos. Operamos. Estos son los diferenciales reales que hacen que nuestros clientes no se vayan.</p>
             </div>
             <div class="diff-grid">
@@ -891,12 +868,12 @@
                 <div class="diff-card reveal">
                     <div class="diff-card__icon"><i class="fas fa-user-check"></i></div>
                     <div class="diff-card__title">Atención directa y humana</div>
-                    <div class="diff-card__text">Tenés acceso a quien maneja tu operación. Sin bots, sin derivaciones, sin cuellos de botella.</div>
+                    <div class="diff-card__text">Tenés acceso a quien maneja tu operación. Sin bots, sin derivaciones.</div>
                 </div>
                 <div class="diff-card reveal">
                     <div class="diff-card__icon"><i class="fas fa-shield-alt"></i></div>
                     <div class="diff-card__title">Nos hacemos cargo</div>
-                    <div class="diff-card__text">Si hay pérdida o rotura, respondemos. Sin vueltas. Sin excusas. Vos no absorbés el costo.</div>
+                    <div class="diff-card__text">Si hay pérdida o rotura, respondemos. Sin vueltas. Sin excusas.</div>
                 </div>
                 <div class="diff-card reveal">
                     <div class="diff-card__icon"><i class="fas fa-percent"></i></div>
@@ -906,46 +883,37 @@
                 <div class="diff-card reveal">
                     <div class="diff-card__icon"><i class="fas fa-file-invoice"></i></div>
                     <div class="diff-card__title">Factura A</div>
-                    <div class="diff-card__text">Operamos en blanco. Factura A disponible para empresas y responsables inscriptos.</div>
+                    <div class="diff-card__text">Operamos en blanco. Factura A para empresas y responsables inscriptos.</div>
                 </div>
                 <div class="diff-card reveal">
                     <div class="diff-card__icon"><i class="fas fa-truck"></i></div>
                     <div class="diff-card__title">+50 vehículos activos</div>
-                    <div class="diff-card__text">Estructura real para absorber tu volumen sin perder calidad ni tiempos de entrega.</div>
+                    <div class="diff-card__text">Estructura real para absorber tu volumen sin perder calidad ni tiempos.</div>
                 </div>
                 <div class="diff-card reveal">
                     <div class="diff-card__icon"><i class="fas fa-comments"></i></div>
                     <div class="diff-card__title">Repartidor ↔ comprador</div>
-                    <div class="diff-card__text">El comprador se comunica directamente con quien entrega. Menos reclamos, mejor experiencia.</div>
+                    <div class="diff-card__text">El comprador se comunica directo con quien entrega. Menos reclamos, mejor experiencia.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="how">
-        <div class="section-header">
-            <span class="section-label">Cómo empezar</span>
-            <h2 class="section-title">Tres pasos para<br>operar con nosotros</h2>
+    <!-- CALLOUT BAND -->
+    <div class="callout-band">
+        <div class="callout-band__inner">
+            <div>
+                <div class="callout-band__text">
+                    Tu equipo rinde más cuando<br>tu operación respira mejor.
+                </div>
+                <p class="callout-band__sub">La logística no tiene porqué sentirse pesada ni caótica.</p>
+            </div>
+            <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
+               class="btn-dark" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Empezar ahora
+            </a>
         </div>
-        <div class="how__steps">
-            <div class="step reveal">
-                <div class="step__num">01</div>
-                <div class="step__title">Nos contactás por WhatsApp</div>
-                <div class="step__text">Contanos tu volumen de envíos, zonas y tipo de producto. Te respondemos en menos de 2 horas en horario comercial.</div>
-            </div>
-            <div class="step reveal">
-                <div class="step__num">02</div>
-                <div class="step__title">Te armamos una cotización</div>
-                <div class="step__text">Cotización personalizada según tu volumen y zonas. Sin letra chica, sin sorpresas. Todo claro desde el arranque.</div>
-            </div>
-            <div class="step reveal">
-                <div class="step__num">03</div>
-                <div class="step__title">Empezamos a operar</div>
-                <div class="step__text">Integramos tu operación, coordinamos la logística y empezamos a entregar. Así de simple.</div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- ZONAS -->
     <section class="zonas" id="zonas">
@@ -992,7 +960,7 @@
     <section class="testimonios" id="testimonios">
         <div class="section-header">
             <span class="section-label">Lo que dicen nuestros clientes</span>
-            <h2 class="section-title">Negocios que volvieron.<br>Y no se van más.</h2>
+            <h2 class="section-title">Negocios que volvieron.<br>Y <em>no se van más.</em></h2>
             <p class="section-sub">La mayoría probaron otras logísticas antes. Acá están sus palabras.</p>
         </div>
         <div class="testimonios__grid">
@@ -1032,48 +1000,47 @@
         </div>
     </section>
 
-    <!-- FAQ / OBJECIONES -->
+    <!-- FAQ -->
     <section class="faq">
         <div class="faq__inner">
             <div class="section-header">
                 <span class="section-label">Preguntas frecuentes</span>
                 <h2 class="section-title">Lo que suelen<br>preguntarnos</h2>
             </div>
-
             <div class="faq-item">
                 <button class="faq-q" aria-expanded="false">
                     Ya tengo logística. ¿Por qué cambiar?
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <div class="faq-a">La mayoría de nuestros clientes también tenían una logística cuando nos contactaron. El diferencial es que con Shipment las penalizaciones de Mercado Libre bajan a cero, la comunicación es directa y si hay un problema alguien real responde. Muchos volvieron después de haberse ido a probar otras opciones. El costo de cambiar es bajo. El costo de quedarte con una logística que falla, no.</div>
+                <div class="faq-a">La mayoría de nuestros clientes también tenían una cuando nos contactaron. El diferencial es que con Shipment las penalizaciones de Mercado Libre bajan a cero, la comunicación es directa y si hay un problema alguien real responde. Muchos volvieron después de irse a probar otras opciones. El costo de cambiar es bajo. El costo de quedarte con una logística que falla, no.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q" aria-expanded="false">
                     ¿Cómo garantizan el cumplimiento de los horarios Flex?
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <div class="faq-a">Tenemos la operación diseñada específicamente para cumplir con los horarios de entrega de Mercado Libre Flex. Es nuestro principal diferencial y lo que hace que nuestros clientes no tengan penalizaciones. Operamos lunes a sábado con más de 50 vehículos y centros de distribución en Avellaneda y La Plata.</div>
+                <div class="faq-a">Tenemos la operación diseñada específicamente para cumplir con los horarios de entrega de Mercado Libre Flex. Es nuestro principal diferencial. Operamos lunes a sábado con más de 50 vehículos y centros de distribución en Avellaneda y La Plata.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q" aria-expanded="false">
                     ¿Qué pasa si se pierde o rompe un paquete?
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <div class="faq-a">Nos hacemos cargo. Sin vueltas. Tenemos un proceso claro para resolver pérdidas y daños. No vas a absorber vos el costo por un error de logística.</div>
+                <div class="faq-a">Nos hacemos cargo. Sin vueltas. No vas a absorber vos el costo por un error de logística.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q" aria-expanded="false">
                     ¿Hay un mínimo de envíos para trabajar juntos?
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <div class="faq-a">Trabajamos con negocios que hacen mínimo 15 envíos diarios. Si estás en ese rango o cerca, consultanos. Si tu volumen puede crecer, mejor todavía — tenemos descuento por volumen y la estructura para acompañarte.</div>
+                <div class="faq-a">Trabajamos con negocios que hacen mínimo 15 envíos diarios. Si estás en ese rango o cerca, consultanos. Si tu volumen puede crecer, mejor todavía — tenemos descuento por volumen.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q" aria-expanded="false">
                     ¿Emiten factura A?
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <div class="faq-a">Sí. Operamos completamente en blanco y emitimos factura A para empresas y responsables inscriptos. Sin problemas contables ni grises.</div>
+                <div class="faq-a">Sí. Operamos en blanco y emitimos factura A para empresas y responsables inscriptos. Sin problemas.</div>
             </div>
         </div>
     </section>
@@ -1081,12 +1048,11 @@
     <!-- CTA FINAL -->
     <section class="cta-final">
         <div class="cta-final__inner">
-            <h2>¿Hacés más de 15 envíos diarios? <em>Hablemos hoy.</em></h2>
+            <h2>¿Hacés más de 15 envíos diarios?<br><em>Hablemos hoy.</em></h2>
             <p class="cta-final__sub">Tu reputación en Mercado Libre no puede depender de una logística que falla. Consultanos sin compromiso.</p>
             <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce.%20Hago%20m%C3%A1s%20de%2015%20env%C3%ADos%20diarios."
                class="btn-wa-xl" target="_blank" rel="noopener">
-                <i class="fab fa-whatsapp"></i>
-                Hablar por WhatsApp
+                <i class="fab fa-whatsapp"></i> Hablar por WhatsApp
             </a>
             <p class="cta-final__note">Respondemos en menos de 2 horas en horario comercial</p>
         </div>
@@ -1096,14 +1062,14 @@
     <footer>
         <div class="footer__inner">
             <div class="footer__brand">
-                <img src="logo.png" alt="Shipment Logística"
-                     onerror="this.style.display='none'">
+                <img src="logo.png" alt="Shipment Logística" onerror="this.style.display='none'">
                 <p>Logística confiable para ecommerce y vendedores de Mercado Libre Flex. CABA, Zona Sur y La Plata.</p>
             </div>
             <div class="footer__col">
                 <h4>Navegación</h4>
                 <ul>
                     <li><a href="#diferencial">Por qué Shipment</a></li>
+                    <li><a href="#ruta">Cómo funciona</a></li>
                     <li><a href="#zonas">Zonas</a></li>
                     <li><a href="#testimonios">Testimonios</a></li>
                 </ul>
@@ -1131,24 +1097,18 @@
 
     <script>
         /* ── Mobile menu ── */
-        function toggleMenu() {
-            document.getElementById('mobile-menu').classList.toggle('open');
-        }
-        function closeMenu() {
-            document.getElementById('mobile-menu').classList.remove('open');
-        }
+        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+        function closeMenu()  { document.getElementById('mobile-menu').classList.remove('open'); }
 
         /* ── FAQ accordion ── */
         document.querySelectorAll('.faq-q').forEach(btn => {
             btn.addEventListener('click', () => {
                 const answer = btn.nextElementSibling;
                 const isOpen = btn.getAttribute('aria-expanded') === 'true';
-
                 document.querySelectorAll('.faq-q').forEach(b => {
                     b.setAttribute('aria-expanded', 'false');
                     b.nextElementSibling.classList.remove('open');
                 });
-
                 if (!isOpen) {
                     btn.setAttribute('aria-expanded', 'true');
                     answer.classList.add('open');
@@ -1156,17 +1116,78 @@
             });
         });
 
-        /* ── Scroll-in animation ── */
-        const observer = new IntersectionObserver(entries => {
+        /* ── Count-up animation for stats ── */
+        function countUp(el) {
+            const target = parseInt(el.dataset.target, 10);
+            const prefix = el.dataset.target >= 50 ? '+' : '';
+            const duration = 1600;
+            const step = target / (duration / 16);
+            let current = 0;
+            const timer = setInterval(() => {
+                current = Math.min(current + step, target);
+                el.textContent = prefix + Math.floor(current);
+                if (current >= target) clearInterval(timer);
+            }, 16);
+        }
+
+        const statsObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('[data-target]').forEach(countUp);
+                    statsObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) statsObserver.observe(statsBar);
+
+        /* ── Truck journey animation ── */
+        function animateJourney() {
+            const truck = document.getElementById('journey-truck');
+            const stops = document.querySelectorAll('.jstop');
+            if (!truck) return;
+
+            // Activate first stop immediately
+            stops[0].classList.add('active');
+
+            // Drive truck across
+            requestAnimationFrame(() => {
+                truck.classList.add('drive');
+            });
+
+            // Activate subsequent stops based on truck travel time (3s total)
+            const totalTime = 3000;
+            stops.forEach((stop, i) => {
+                if (i === 0) return;
+                const delay = (i / (stops.length - 1)) * totalTime;
+                setTimeout(() => stop.classList.add('active'), delay);
+            });
+        }
+
+        const journeyObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    animateJourney();
+                    journeyObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        const journeySection = document.querySelector('.journey');
+        if (journeySection) journeyObserver.observe(journeySection);
+
+        /* ── Generic reveal on scroll ── */
+        const revealObserver = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
                     e.target.classList.add('visible');
-                    observer.unobserve(e.target);
+                    revealObserver.unobserve(e.target);
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.12 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
