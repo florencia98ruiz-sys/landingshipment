@@ -53,7 +53,7 @@
             backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
         }
-        .navbar__logo img { height: 44px; width: auto; display: block; border-radius: 6px; }
+        .navbar__logo img { height: 80px; width: auto; display: block; border-radius: 8px; }
         .footer__brand img { height: 52px; width: auto; border-radius: 6px; margin-bottom: 16px; }
         .navbar__logo-fallback {
             font-family: 'Poppins', sans-serif;
@@ -65,7 +65,7 @@
             display: block; letter-spacing: 2px; opacity: 0.7; margin-top: -2px;
         }
         .navbar__logo img {
-            height: 44px; border-radius: 8px;
+            height: 80px; border-radius: 8px;
         }
         .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
         .navbar__links a {
@@ -583,6 +583,25 @@
             color: var(--gray-lt); margin-bottom: 22px; font-weight: 400;
         }
 
+        .ne-headblock { margin-bottom: 4px; }
+        .ne-h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(32px, 5vw, 62px);
+            font-weight: 900; line-height: 1.12;
+            color: var(--white); margin: 0 0 16px;
+        }
+        .ne-h2 .no-envios__strike {
+            font-size: inherit;
+            margin-bottom: 0;
+            vertical-align: baseline;
+            display: inline-block;
+        }
+        .ne-cta-label {
+            font-size: clamp(16px, 2vw, 22px);
+            color: var(--accent); font-weight: 700;
+            margin-bottom: 28px; letter-spacing: 0.3px;
+        }
+
         .ne-tags { display: flex; flex-wrap: wrap; gap: 12px; }
 
         .ne-tag {
@@ -793,20 +812,74 @@
             .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
         }
 
-        /* ─── MAPA SVG ─── */
+        /* ─── MAPA GOOGLE ─── */
         .zonas__grid { align-items: center; }
-        .mapa-wrap {
-            background: var(--bg);
-            border: 1px solid var(--border);
+        .mapa-google {
+            position: relative;
             border-radius: var(--r-lg);
             overflow: hidden;
-            position: relative;
+            border: 1px solid var(--border);
+            height: 420px;
         }
-        .mapa-svg { width: 100%; height: auto; display: block; }
-        .zona-card { display: none; } /* ya no se usan */
-
+        .mapa-google iframe {
+            width: 100%; height: 100%;
+            border: 0; display: block;
+            filter: saturate(0.7) brightness(0.9);
+        }
+        .mapa-overlay {
+            position: absolute; inset: 0;
+            z-index: 2; pointer-events: none;
+        }
+        .mapa-pin {
+            position: absolute;
+            display: flex; flex-direction: column;
+            align-items: center; pointer-events: all;
+            transform: translate(-50%, -100%);
+            cursor: default;
+        }
+        .mapa-pin__label {
+            background: rgba(0,52,140,0.95);
+            color: white; font-size: 11px; font-weight: 700;
+            padding: 5px 11px; border-radius: 7px;
+            white-space: nowrap;
+            border: 1px solid rgba(91,155,255,0.6);
+            margin-bottom: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.4);
+            font-family: 'Poppins', sans-serif;
+        }
+        .mapa-pin__dot {
+            width: 14px; height: 14px;
+            background: var(--blue); border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,82,204,.6);
+        }
+        .mapa-pin__dot::before {
+            content: '';
+            position: absolute;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: rgba(0,82,204,.4);
+            animation: pin-pulse 2s ease-in-out infinite;
+            top: 50%; left: 50%; transform: translate(-50%,-50%);
+        }
+        @keyframes pin-pulse {
+            0%   { transform: translate(-50%,-50%) scale(1); opacity: .7; }
+            100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
+        }
+        .mapa-zona-tag {
+            position: absolute;
+            background: rgba(0,82,204,0.18);
+            border: 1px solid rgba(91,155,255,0.3);
+            color: rgba(255,255,255,0.8);
+            font-size: 10px; font-weight: 700;
+            padding: 3px 9px; border-radius: 100px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px; text-transform: uppercase;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
         @media (max-width: 768px) {
-            .mapa-wrap { margin-top: 32px; }
+            .mapa-google { height: 300px; margin-top: 32px; }
         }
     </style>
 </head>
@@ -857,8 +930,6 @@
             </div>
 
             <h1>Un buen envío vale<br>más de lo que <em>pensás</em></h1>
-
-            <p class="hero__tagline">Un cliente feliz <strong>vuelve a comprar.</strong></p>
 
             <p class="hero__sub">
                 Con Shipment, cada entrega suma a tu reputación. Cumplimos los horarios Flex
@@ -1177,9 +1248,10 @@
     <!-- NO ENVÍOS -->
     <section class="no-envios" id="no-envios">
         <div class="no-envios__inner">
-            <p class="no-envios__intro">El cliente no compra</p>
-            <span class="no-envios__strike" id="strike-word">envíos.</span>
-            <p class="no-envios__compra">Compra:</p>
+            <div class="ne-headblock">
+                <h2 class="ne-h2">Tu cliente no compra<br><span class="no-envios__strike" id="strike-word">envíos.</span></h2>
+                <p class="ne-cta-label">Compra:</p>
+            </div>
             <div class="ne-tags">
                 <span class="ne-tag ne-item"><i class="fas fa-dove"></i> Tranquilidad</span>
                 <span class="ne-tag ne-item"><i class="fas fa-check-double"></i> Cumplimiento</span>
@@ -1205,99 +1277,19 @@
                     </ul>
                 </div>
                 <div class="zonas__right">
-                    <div class="mapa-wrap">
-                        <svg class="mapa-svg" viewBox="0 0 500 540" xmlns="http://www.w3.org/2000/svg">
-
-                            <!-- Fondo -->
-                            <rect width="500" height="540" fill="#06101E"/>
-
-                            <!-- Río de la Plata -->
-                            <path d="M385,0 C392,90 408,185 418,275 C426,355 428,445 430,540 L500,540 L500,0 Z"
-                                  fill="rgba(0,82,204,0.13)"/>
-                            <path d="M385,0 C392,90 408,185 418,275 C426,355 428,445 430,540"
-                                  fill="none" stroke="rgba(91,155,255,0.35)" stroke-width="1.5"/>
-                            <!-- Label río -->
-                            <text font-size="9.5" fill="rgba(91,155,255,0.45)" font-family="Inter,sans-serif"
-                                  font-weight="500" text-anchor="middle"
-                                  transform="translate(453,210) rotate(90)">Río de la Plata</text>
-
-                            <!-- CABA -->
-                            <path d="M105,52 L378,52 L380,162 L105,158 Z"
-                                  fill="rgba(0,82,204,0.16)" stroke="rgba(91,155,255,0.5)"
-                                  stroke-width="1.5" stroke-dasharray="5,3"/>
-                            <text x="220" y="112" fill="rgba(255,255,255,0.7)" font-size="13"
-                                  font-family="Poppins,sans-serif" font-weight="700" text-anchor="middle">CABA</text>
-
-                            <!-- Zona Sur GBA -->
-                            <path d="M65,162 L382,164 L390,318 L65,310 Z"
-                                  fill="rgba(0,82,204,0.10)" stroke="rgba(91,155,255,0.35)"
-                                  stroke-width="1.5" stroke-dasharray="5,3"/>
-                            <text x="180" y="222" fill="rgba(255,255,255,0.5)" font-size="11"
-                                  font-family="Poppins,sans-serif" font-weight="600" text-anchor="middle">Zona Sur GBA</text>
-
-                            <!-- La Plata -->
-                            <path d="M112,318 L405,328 L408,465 L112,458 Z"
-                                  fill="rgba(0,82,204,0.10)" stroke="rgba(91,155,255,0.35)"
-                                  stroke-width="1.5" stroke-dasharray="5,3"/>
-                            <text x="248" y="378" fill="rgba(255,255,255,0.5)" font-size="11"
-                                  font-family="Poppins,sans-serif" font-weight="600" text-anchor="middle">La Plata y alrededores</text>
-
-                            <!-- Cobertura Avellaneda -->
-                            <circle cx="205" cy="240" r="80" fill="rgba(0,82,204,0.07)"
-                                    stroke="rgba(91,155,255,0.18)" stroke-width="1" stroke-dasharray="6,4">
-                                <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
-                            </circle>
-
-                            <!-- Cobertura La Plata -->
-                            <circle cx="268" cy="392" r="74" fill="rgba(0,82,204,0.07)"
-                                    stroke="rgba(91,155,255,0.18)" stroke-width="1" stroke-dasharray="6,4">
-                                <animate attributeName="opacity" values="0.5;1;0.5" dur="3.8s" repeatCount="indefinite"/>
-                            </circle>
-
-                            <!-- Línea conectora animada -->
-                            <line x1="205" y1="240" x2="268" y2="392"
-                                  stroke="rgba(91,155,255,0.22)" stroke-width="1.5" stroke-dasharray="7,5">
-                                <animate attributeName="stroke-dashoffset" from="0" to="-24"
-                                         dur="1.4s" repeatCount="indefinite"/>
-                            </line>
-
-                            <!-- Pulso Avellaneda -->
-                            <circle cx="205" cy="240" r="10" fill="none" stroke="#5B9BFF" stroke-width="2">
-                                <animate attributeName="r" values="10;36" dur="2.2s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.9;0" dur="2.2s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="205" cy="240" r="10" fill="none" stroke="#5B9BFF" stroke-width="2">
-                                <animate attributeName="r" values="10;36" dur="2.2s" begin="0.8s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.9;0" dur="2.2s" begin="0.8s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="205" cy="240" r="8" fill="#0052CC" stroke="#5B9BFF" stroke-width="2.5"/>
-                            <circle cx="205" cy="240" r="3.5" fill="white"/>
-
-                            <!-- Pulso La Plata -->
-                            <circle cx="268" cy="392" r="10" fill="none" stroke="#5B9BFF" stroke-width="2">
-                                <animate attributeName="r" values="10;36" dur="2.7s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.9;0" dur="2.7s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="268" cy="392" r="10" fill="none" stroke="#5B9BFF" stroke-width="2">
-                                <animate attributeName="r" values="10;36" dur="2.7s" begin="1s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.9;0" dur="2.7s" begin="1s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="268" cy="392" r="8" fill="#0052CC" stroke="#5B9BFF" stroke-width="2.5"/>
-                            <circle cx="268" cy="392" r="3.5" fill="white"/>
-
-                            <!-- Badge Avellaneda -->
-                            <rect x="218" y="226" width="124" height="30" rx="6"
-                                  fill="rgba(0,52,140,0.92)" stroke="rgba(91,155,255,0.55)" stroke-width="1"/>
-                            <text x="280" y="246" fill="white" font-size="10.5"
-                                  font-family="Poppins,sans-serif" font-weight="700" text-anchor="middle">⬡ Avellaneda</text>
-
-                            <!-- Badge La Plata -->
-                            <rect x="282" y="378" width="110" height="30" rx="6"
-                                  fill="rgba(0,52,140,0.92)" stroke="rgba(91,155,255,0.55)" stroke-width="1"/>
-                            <text x="337" y="398" fill="white" font-size="10.5"
-                                  font-family="Poppins,sans-serif" font-weight="700" text-anchor="middle">⬡ La Plata</text>
-
-                        </svg>
+                    <div class="mapa-google">
+                        <div class="mapa-overlay">
+                            <div class="mapa-pin" style="top:43%;left:32%">
+                                <div class="mapa-pin__label">⬡ Centro Avellaneda</div>
+                                <div class="mapa-pin__dot"></div>
+                            </div>
+                            <div class="mapa-pin" style="top:69%;left:66%">
+                                <div class="mapa-pin__label">⬡ Centro La Plata</div>
+                                <div class="mapa-pin__dot"></div>
+                            </div>
+                        </div>
+                        <iframe src="https://maps.google.com/maps?q=-34.73,-58.15&z=10&output=embed&hl=es"
+                                allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
