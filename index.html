@@ -560,23 +560,13 @@
             font-family: 'Poppins', sans-serif;
             font-size: clamp(44px, 7vw, 90px);
             font-weight: 900; line-height: 1;
-            color: var(--gray);
+            color: var(--white);
             position: relative; display: inline-block;
             margin-bottom: 28px;
             opacity: 0; transform: translateX(-20px);
             transition: opacity 0.45s ease, transform 0.45s ease;
         }
-        .no-envios__strike::after {
-            content: '';
-            position: absolute;
-            left: 0; top: 54%;
-            height: 5px; width: 0;
-            background: #FF4040;
-            border-radius: 3px;
-            transition: width 0.55s cubic-bezier(0.4,0,0.2,1) 0.25s;
-        }
         .no-envios__strike.visible { opacity: 1; transform: translateX(0); }
-        .no-envios__strike.visible::after { width: 100%; }
 
         .no-envios__compra {
             font-size: clamp(15px, 1.6vw, 19px);
