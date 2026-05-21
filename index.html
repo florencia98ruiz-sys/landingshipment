@@ -16,7 +16,7 @@
             --bg:         #06101E;
             --surface:    #0C1A2E;
             --surface-2:  #112240;
-            --blue:       #0052CC;
+            --blue:       #004195;
             --blue-lt:    #1A6AE0;
             --accent:     #5B9BFF;
             --brand:      #0052CC;
@@ -53,7 +53,7 @@
             backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(91,155,255,0.2);
         }
-        .navbar__logo img { height: 80px; width: auto; display: block; border-radius: 8px; }
+        .navbar__logo img { height: 80px; width: auto; display: block; border-radius: 0; }
         .footer__brand img { height: 52px; width: auto; border-radius: 6px; margin-bottom: 16px; }
         .navbar__logo-fallback {
             font-family: 'Poppins', sans-serif;
@@ -65,7 +65,7 @@
             display: block; letter-spacing: 2px; opacity: 0.7; margin-top: -2px;
         }
         .navbar__logo img {
-            height: 80px; border-radius: 8px;
+            height: 80px; border-radius: 0;
         }
         .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
         .navbar__links a {
@@ -249,7 +249,7 @@
 
         /* ─── STATS BAR ─── */
         .stats-bar {
-            background: var(--blue);
+            background: linear-gradient(135deg, #004195 0%, #062E61 50%, #001E44 100%);
             padding: 28px 60px;
         }
         .stats-bar__grid {
@@ -653,9 +653,9 @@
         .ne-headblock { margin-bottom: 4px; }
         .ne-h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: clamp(32px, 5vw, 62px);
+            font-size: clamp(22px, 3vw, 38px);
             font-weight: 900; line-height: 1.12;
-            color: var(--white); margin: 0 0 16px;
+            color: var(--white); margin: 0 0 10px;
         }
         .ne-h2 .no-envios__strike {
             font-size: inherit;
@@ -689,8 +689,69 @@
             transition: transform 0.3s ease;
         }
         .ne-tag:hover .ne-tag__icon { transform: scale(1.12) rotate(-5deg); }
-        .ne-tag__word { font-size: clamp(15px, 1.8vw, 18px); font-weight: 800; color: var(--white); }
-        .ne-tag__sub { font-size: 12px; color: var(--gray-lt); margin-top: 3px; }
+        .ne-tag__word { font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; color: var(--white); }
+        .ne-tag__sub { font-size: 11px; color: var(--gray-lt); margin-top: 3px; }
+
+        /* ─── NE HUB ─── */
+        .ne-hub {
+            display: grid;
+            grid-template-columns: 1fr 150px 1fr;
+            gap: 0 20px;
+            align-items: center;
+            margin-top: 24px;
+        }
+        .ne-hub__col { display: flex; flex-direction: column; gap: 12px; }
+        .ne-hub__col--right .ne-tag { flex-direction: row-reverse; }
+        .ne-hub__col--left .ne-tag {
+            transform: translateX(-28px);
+        }
+        .ne-hub__col--right .ne-tag {
+            transform: translateX(28px);
+        }
+        .ne-hub__col .ne-tag.visible { transform: translateX(0); }
+
+        /* Arrow connectors */
+        .ne-hub__col--left .ne-tag::after {
+            content: '→';
+            font-size: 13px; color: rgba(91,155,255,0.45);
+            flex-shrink: 0; align-self: center;
+        }
+        .ne-hub__col--right .ne-tag::before {
+            content: '←';
+            font-size: 13px; color: rgba(91,155,255,0.45);
+            flex-shrink: 0; align-self: center;
+        }
+
+        /* Center orb */
+        .ne-hub__center {
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ne-hub__orb {
+            width: 110px; height: 110px; border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #004195, #001E44);
+            border: 2px solid rgba(91,155,255,0.4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 46px; position: relative;
+            box-shadow: 0 0 28px rgba(0,65,149,0.5);
+            animation: orb-pulse 2.5s ease-in-out infinite;
+        }
+        .ne-hub__orb::before {
+            content: ''; position: absolute; border-radius: 50%;
+            width: 138px; height: 138px;
+            border: 1px dashed rgba(91,155,255,0.2);
+            animation: orb-spin 8s linear infinite;
+        }
+        .ne-hub__orb::after {
+            content: ''; position: absolute; border-radius: 50%;
+            width: 166px; height: 166px;
+            border: 1px dashed rgba(91,155,255,0.1);
+            animation: orb-spin 14s linear infinite reverse;
+        }
+        @keyframes orb-spin { to { transform: rotate(360deg); } }
+        @keyframes orb-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0,65,149,0.4); }
+            50% { box-shadow: 0 0 55px rgba(0,65,149,0.75), 0 0 90px rgba(91,155,255,0.25); }
+        }
 
         /* ─── ZONAS ─── */
         .zonas {
@@ -884,6 +945,11 @@
             .foto-slot[data-id="2"],
             .foto-slot[data-id="5"] { grid-column: 1 / span 2 !important; grid-row: auto !important; height: 220px; }
             .no-envios { padding: 64px 24px; }
+            .ne-hub { grid-template-columns: 1fr; gap: 24px; }
+            .ne-hub__center { order: -1; }
+            .ne-hub__col--left .ne-tag::after { display: none; }
+            .ne-hub__col--right .ne-tag::before { display: none; }
+            .ne-hub__col--right .ne-tag { flex-direction: row; }
             .faq { padding: 64px 24px; }
             .cta-final { padding: 80px 24px; }
             footer { padding: 48px 24px 32px; }
@@ -1220,7 +1286,7 @@
             <div class="dif-truck-section" id="difTruckSection">
                 <div class="dif-road-wrap">
                     <div class="dif-road-line"></div>
-                    <div class="dif-truck-icon" id="difTruck">🚚</div>
+                    <div class="dif-truck-icon" id="difTruck">👍</div>
                     <div class="dif-stop-m" style="left:10%"><span class="dif-stop-dot"></span></div>
                     <div class="dif-stop-m" style="left:28%"><span class="dif-stop-dot"></span></div>
                     <div class="dif-stop-m" style="left:46%"><span class="dif-stop-dot"></span></div>
@@ -1229,25 +1295,25 @@
                 </div>
                 <div class="dif-cards-track">
                     <div class="dif-deliv" id="dif1">
-                        <div class="dif-deliv__icon"><i class="fas fa-check-double"></i></div>
+                        <div class="dif-deliv__icon"><i class="fas fa-clock"></i></div>
                         <div class="dif-deliv__num">01</div>
                         <div class="dif-deliv__title">Cumplimos horarios Flex</div>
                         <div class="dif-deliv__text">Entregamos en tiempo. Tu reputación Flex, protegida todos los días.</div>
                     </div>
                     <div class="dif-deliv" id="dif2">
-                        <div class="dif-deliv__icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="dif-deliv__icon"><i class="fas fa-circle-xmark"></i></div>
                         <div class="dif-deliv__num">02</div>
                         <div class="dif-deliv__title">Sin excusas ni demoras</div>
                         <div class="dif-deliv__text">Atención directa, sin intermediarios. Problemas resueltos en el día.</div>
                     </div>
                     <div class="dif-deliv" id="dif3">
-                        <div class="dif-deliv__icon"><i class="fas fa-boxes-stacking"></i></div>
+                        <div class="dif-deliv__icon"><i class="fas fa-stairs"></i></div>
                         <div class="dif-deliv__num">03</div>
                         <div class="dif-deliv__title">Escalamos con vos</div>
                         <div class="dif-deliv__text">Desde 15 hasta cientos de envíos diarios sin cambiar de operador.</div>
                     </div>
                     <div class="dif-deliv" id="dif4">
-                        <div class="dif-deliv__icon"><i class="fas fa-route"></i></div>
+                        <div class="dif-deliv__icon"><i class="fas fa-map-location-dot"></i></div>
                         <div class="dif-deliv__num">04</div>
                         <div class="dif-deliv__title">CABA, GBA Sur y La Plata</div>
                         <div class="dif-deliv__text">Cobertura amplia con centros propios en Avellaneda y La Plata.</div>
@@ -1328,29 +1394,39 @@
     <section class="no-envios" id="no-envios">
         <div class="no-envios__inner">
             <div class="ne-headblock">
-                <h2 class="ne-h2">Tu cliente no compra<br><span class="no-envios__strike" id="strike-word">envíos.</span></h2>
+                <h2 class="ne-h2">Tu cliente no compra <span class="no-envios__strike" id="strike-word">envíos.</span></h2>
                 <p class="ne-cta-label">Compra:</p>
             </div>
-            <div class="ne-tags">
-                <div class="ne-tag ne-item">
-                    <div class="ne-tag__icon"><i class="fas fa-dove"></i></div>
-                    <div><div class="ne-tag__word">Tranquilidad</div><div class="ne-tag__sub">Tu negocio, sin sorpresas</div></div>
+            <div class="ne-hub">
+                <!-- Columna izquierda -->
+                <div class="ne-hub__col ne-hub__col--left">
+                    <div class="ne-tag ne-item">
+                        <div class="ne-tag__icon"><i class="fas fa-dove"></i></div>
+                        <div><div class="ne-tag__word">Tranquilidad</div><div class="ne-tag__sub">Tu negocio, sin sorpresas</div></div>
+                    </div>
+                    <div class="ne-tag ne-item">
+                        <div class="ne-tag__icon"><i class="fas fa-check-double"></i></div>
+                        <div><div class="ne-tag__word">Cumplimiento</div><div class="ne-tag__sub">Cero penalizaciones Flex</div></div>
+                    </div>
+                    <div class="ne-tag ne-item">
+                        <div class="ne-tag__icon"><i class="fas fa-arrow-trend-up"></i></div>
+                        <div><div class="ne-tag__word">Escalabilidad</div><div class="ne-tag__sub">Crecé sin cambiar de logística</div></div>
+                    </div>
                 </div>
-                <div class="ne-tag ne-item">
-                    <div class="ne-tag__icon"><i class="fas fa-check-double"></i></div>
-                    <div><div class="ne-tag__word">Cumplimiento</div><div class="ne-tag__sub">Cero penalizaciones Flex</div></div>
+                <!-- Hub central -->
+                <div class="ne-hub__center">
+                    <div class="ne-hub__orb">🚚</div>
                 </div>
-                <div class="ne-tag ne-item">
-                    <div class="ne-tag__icon"><i class="fas fa-star"></i></div>
-                    <div><div class="ne-tag__word">Reputación</div><div class="ne-tag__sub">Más estrellas, más ventas</div></div>
-                </div>
-                <div class="ne-tag ne-item">
-                    <div class="ne-tag__icon"><i class="fas fa-arrow-trend-up"></i></div>
-                    <div><div class="ne-tag__word">Escalabilidad</div><div class="ne-tag__sub">Crecé sin cambiar de logística</div></div>
-                </div>
-                <div class="ne-tag ne-item">
-                    <div class="ne-tag__icon"><i class="fas fa-face-smile"></i></div>
-                    <div><div class="ne-tag__word">Menos quilombos</div><div class="ne-tag__sub">Atención directa, siempre</div></div>
+                <!-- Columna derecha -->
+                <div class="ne-hub__col ne-hub__col--right">
+                    <div class="ne-tag ne-item">
+                        <div class="ne-tag__icon"><i class="fas fa-star"></i></div>
+                        <div><div class="ne-tag__word">Reputación</div><div class="ne-tag__sub">Más estrellas, más ventas</div></div>
+                    </div>
+                    <div class="ne-tag ne-item">
+                        <div class="ne-tag__icon"><i class="fas fa-face-smile"></i></div>
+                        <div><div class="ne-tag__word">Menos quilombos</div><div class="ne-tag__sub">Atención directa, siempre</div></div>
+                    </div>
                 </div>
             </div>
         </div>
