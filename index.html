@@ -31,7 +31,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
@@ -46,12 +46,22 @@
             inset: 0 0 auto 0;
             z-index: 100;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: space-between;
-            padding: 14px 60px;
+            height: 80px;
+            padding: 0 60px 0 0;
             background: linear-gradient(135deg, rgba(0,65,149,0.97) 0%, rgba(6,46,97,0.97) 50%, rgba(0,30,68,0.97) 100%);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(91,155,255,0.2);
+        }
+        .navbar__logo {
+            display: flex; align-items: center;
+            position: relative; overflow: hidden;
+        }
+        .navbar__logo::after {
+            content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 32px;
+            background: linear-gradient(to right, transparent, rgba(6,46,97,0.97));
+            pointer-events: none;
         }
         .navbar__logo img { height: 80px; width: auto; display: block; border-radius: 0; }
         .footer__brand img { height: 52px; width: auto; border-radius: 6px; margin-bottom: 16px; }
@@ -65,8 +75,17 @@
             display: block; letter-spacing: 2px; opacity: 0.7; margin-top: -2px;
         }
         .navbar__logo img {
-            height: 80px; border-radius: 0;
+            height: 80px; border-radius: 0; display: block;
         }
+        .btn-nav-cta {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(6,16,30,0.85); border: 1px solid rgba(255,255,255,0.18);
+            color: #fff; border-radius: 12px; padding: 10px 22px;
+            text-decoration: none; font-size: 14px; font-weight: 700;
+            transition: background 0.25s ease, border-color 0.25s ease;
+            white-space: nowrap;
+        }
+        .btn-nav-cta:hover { background: rgba(0,65,149,0.5); border-color: rgba(91,155,255,0.45); }
         .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
         .navbar__links a {
             color: var(--gray-lt); text-decoration: none;
@@ -692,40 +711,7 @@
         .ne-tag__word { font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; color: var(--white); }
         .ne-tag__sub { font-size: 11px; color: var(--gray-lt); margin-top: 3px; }
 
-        /* ─── NE HUB ─── */
-        .ne-hub {
-            display: grid;
-            grid-template-columns: 1fr 150px 1fr;
-            gap: 0 20px;
-            align-items: center;
-            margin-top: 24px;
-        }
-        .ne-hub__col { display: flex; flex-direction: column; gap: 12px; }
-        .ne-hub__col--right .ne-tag { flex-direction: row-reverse; }
-        .ne-hub__col--left .ne-tag {
-            transform: translateX(-28px);
-        }
-        .ne-hub__col--right .ne-tag {
-            transform: translateX(28px);
-        }
-        .ne-hub__col .ne-tag.visible { transform: translateX(0); }
-
-        /* Arrow connectors */
-        .ne-hub__col--left .ne-tag::after {
-            content: '→';
-            font-size: 13px; color: rgba(91,155,255,0.45);
-            flex-shrink: 0; align-self: center;
-        }
-        .ne-hub__col--right .ne-tag::before {
-            content: '←';
-            font-size: 13px; color: rgba(91,155,255,0.45);
-            flex-shrink: 0; align-self: center;
-        }
-
-        /* Center orb */
-        .ne-hub__center {
-            display: flex; align-items: center; justify-content: center;
-        }
+        /* ─── NE RADIAL HUB ─── */
         .ne-hub__orb {
             width: 110px; height: 110px; border-radius: 50%;
             background: radial-gradient(circle at 40% 35%, #004195, #001E44);
@@ -751,6 +737,31 @@
         @keyframes orb-pulse {
             0%, 100% { box-shadow: 0 0 20px rgba(0,65,149,0.4); }
             50% { box-shadow: 0 0 55px rgba(0,65,149,0.75), 0 0 90px rgba(91,155,255,0.25); }
+        }
+
+        /* Radial layout */
+        .ne-radial {
+            position: relative; width: 580px; height: 420px;
+            margin: 24px auto 0;
+        }
+        .ne-radial__svg {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            pointer-events: none; overflow: visible;
+        }
+        .ne-spoke-line { animation: spoke-march 3s linear infinite; }
+        @keyframes spoke-march { to { stroke-dashoffset: -20; } }
+        .ne-radial__orb {
+            position: absolute; top: 210px; left: 290px;
+            transform: translate(-50%, -50%); z-index: 2;
+        }
+        /* Items absolutely positioned around hub */
+        .ne-radial .ne-tag {
+            position: absolute; transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0; z-index: 2; min-width: 150px; max-width: 175px;
+            transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34,1.3,0.64,1);
+        }
+        .ne-radial .ne-tag.visible {
+            opacity: 1; transform: translate(-50%, -50%) scale(1);
         }
 
         /* ─── ZONAS ─── */
@@ -905,7 +916,8 @@
             .callout-band__inner { flex-direction: column; text-align: center; }
         }
         @media (max-width: 768px) {
-            .navbar { padding: 14px 24px; }
+            .navbar { padding: 0 16px 0 0; height: 72px; }
+            .navbar__logo img { height: 72px; }
             .navbar__links { display: none; }
             .hamburger { display: flex; }
             .hero { padding: 100px 24px 60px; }
@@ -945,11 +957,24 @@
             .foto-slot[data-id="2"],
             .foto-slot[data-id="5"] { grid-column: 1 / span 2 !important; grid-row: auto !important; height: 220px; }
             .no-envios { padding: 64px 24px; }
-            .ne-hub { grid-template-columns: 1fr; gap: 24px; }
-            .ne-hub__center { order: -1; }
-            .ne-hub__col--left .ne-tag::after { display: none; }
-            .ne-hub__col--right .ne-tag::before { display: none; }
-            .ne-hub__col--right .ne-tag { flex-direction: row; }
+            /* Radial → vertical list on mobile */
+            .ne-radial {
+                position: static; width: auto; height: auto;
+                display: flex; flex-direction: column; align-items: center; gap: 12px;
+            }
+            .ne-radial__svg { display: none; }
+            .ne-radial__orb {
+                position: static; transform: none; margin-bottom: 8px;
+            }
+            .ne-radial .ne-tag {
+                position: static; transform: none; min-width: 0; max-width: 100%; width: 100%;
+                opacity: 0; transform: translateY(16px);
+            }
+            .ne-radial .ne-tag.visible { opacity: 1; transform: translateY(0); }
+            /* Truck section mobile */
+            .dif-cards-track { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .dif-road-wrap { height: 50px; margin-bottom: 20px; }
+            .dif-truck-icon { font-size: 26px; }
             .faq { padding: 64px 24px; }
             .cta-final { padding: 80px 24px; }
             footer { padding: 48px 24px 32px; }
@@ -1044,7 +1069,7 @@
             <li><a href="#testimonios">Testimonios</a></li>
             <li>
                 <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
-                   class="btn-wa-sm" target="_blank" rel="noopener">
+                   class="btn-nav-cta" target="_blank" rel="noopener">
                     <i class="fab fa-whatsapp"></i> Consultar ahora
                 </a>
             </li>
@@ -1397,36 +1422,34 @@
                 <h2 class="ne-h2">Tu cliente no compra <span class="no-envios__strike" id="strike-word">envíos.</span></h2>
                 <p class="ne-cta-label">Compra:</p>
             </div>
-            <div class="ne-hub">
-                <!-- Columna izquierda -->
-                <div class="ne-hub__col ne-hub__col--left">
-                    <div class="ne-tag ne-item">
-                        <div class="ne-tag__icon"><i class="fas fa-dove"></i></div>
-                        <div><div class="ne-tag__word">Tranquilidad</div><div class="ne-tag__sub">Tu negocio, sin sorpresas</div></div>
-                    </div>
-                    <div class="ne-tag ne-item">
-                        <div class="ne-tag__icon"><i class="fas fa-check-double"></i></div>
-                        <div><div class="ne-tag__word">Cumplimiento</div><div class="ne-tag__sub">Cero penalizaciones Flex</div></div>
-                    </div>
-                    <div class="ne-tag ne-item">
-                        <div class="ne-tag__icon"><i class="fas fa-arrow-trend-up"></i></div>
-                        <div><div class="ne-tag__word">Escalabilidad</div><div class="ne-tag__sub">Crecé sin cambiar de logística</div></div>
-                    </div>
+            <div class="ne-radial">
+                <svg class="ne-radial__svg" viewBox="0 0 580 420" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="290" y1="210" x2="290" y2="40" stroke="rgba(91,155,255,0.25)" stroke-width="1.5" stroke-dasharray="6,4" class="ne-spoke-line"/>
+                    <line x1="290" y1="210" x2="456" y2="156" stroke="rgba(91,155,255,0.25)" stroke-width="1.5" stroke-dasharray="6,4" class="ne-spoke-line"/>
+                    <line x1="290" y1="210" x2="393" y2="352" stroke="rgba(91,155,255,0.25)" stroke-width="1.5" stroke-dasharray="6,4" class="ne-spoke-line"/>
+                    <line x1="290" y1="210" x2="187" y2="352" stroke="rgba(91,155,255,0.25)" stroke-width="1.5" stroke-dasharray="6,4" class="ne-spoke-line"/>
+                    <line x1="290" y1="210" x2="124" y2="156" stroke="rgba(91,155,255,0.25)" stroke-width="1.5" stroke-dasharray="6,4" class="ne-spoke-line"/>
+                </svg>
+                <div class="ne-hub__orb ne-radial__orb">🚚</div>
+                <div class="ne-tag ne-item" style="top:40px;left:290px">
+                    <div class="ne-tag__icon"><i class="fas fa-dove"></i></div>
+                    <div><div class="ne-tag__word">Tranquilidad</div><div class="ne-tag__sub">Sin sorpresas</div></div>
                 </div>
-                <!-- Hub central -->
-                <div class="ne-hub__center">
-                    <div class="ne-hub__orb">🚚</div>
+                <div class="ne-tag ne-item" style="top:156px;left:456px">
+                    <div class="ne-tag__icon"><i class="fas fa-check-double"></i></div>
+                    <div><div class="ne-tag__word">Cumplimiento</div><div class="ne-tag__sub">Cero penalizaciones</div></div>
                 </div>
-                <!-- Columna derecha -->
-                <div class="ne-hub__col ne-hub__col--right">
-                    <div class="ne-tag ne-item">
-                        <div class="ne-tag__icon"><i class="fas fa-star"></i></div>
-                        <div><div class="ne-tag__word">Reputación</div><div class="ne-tag__sub">Más estrellas, más ventas</div></div>
-                    </div>
-                    <div class="ne-tag ne-item">
-                        <div class="ne-tag__icon"><i class="fas fa-face-smile"></i></div>
-                        <div><div class="ne-tag__word">Menos quilombos</div><div class="ne-tag__sub">Atención directa, siempre</div></div>
-                    </div>
+                <div class="ne-tag ne-item" style="top:352px;left:393px">
+                    <div class="ne-tag__icon"><i class="fas fa-star"></i></div>
+                    <div><div class="ne-tag__word">Reputación</div><div class="ne-tag__sub">Más ventas</div></div>
+                </div>
+                <div class="ne-tag ne-item" style="top:352px;left:187px">
+                    <div class="ne-tag__icon"><i class="fas fa-arrow-trend-up"></i></div>
+                    <div><div class="ne-tag__word">Escalabilidad</div><div class="ne-tag__sub">Sin límites</div></div>
+                </div>
+                <div class="ne-tag ne-item" style="top:156px;left:124px">
+                    <div class="ne-tag__icon"><i class="fas fa-face-smile"></i></div>
+                    <div><div class="ne-tag__word">Menos quilombos</div><div class="ne-tag__sub">Atención directa</div></div>
                 </div>
             </div>
         </div>
@@ -1449,16 +1472,16 @@
                 <div class="zonas__right">
                     <div class="mapa-google">
                         <div class="mapa-overlay">
-                            <div class="mapa-pin" style="top:43%;left:32%">
-                                <div class="mapa-pin__label">⬡ Centro Avellaneda</div>
+                            <div class="mapa-pin" style="top:28%;left:22%">
+                                <div class="mapa-pin__label">⬡ Avellaneda</div>
                                 <div class="mapa-pin__dot"></div>
                             </div>
-                            <div class="mapa-pin" style="top:69%;left:66%">
-                                <div class="mapa-pin__label">⬡ Centro La Plata</div>
+                            <div class="mapa-pin" style="top:54%;left:54%">
+                                <div class="mapa-pin__label">⬡ La Plata</div>
                                 <div class="mapa-pin__dot"></div>
                             </div>
                         </div>
-                        <iframe src="https://maps.google.com/maps?q=-34.73,-58.15&z=10&output=embed&hl=es"
+                        <iframe src="https://maps.google.com/maps?q=-34.9214,-57.9544&z=9&output=embed&hl=es"
                                 allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
