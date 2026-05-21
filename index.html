@@ -49,9 +49,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 14px 60px;
-            background: rgba(6,16,30,0.95);
+            background: linear-gradient(135deg, rgba(0,65,149,0.97) 0%, rgba(6,46,97,0.97) 50%, rgba(0,30,68,0.97) 100%);
             backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(91,155,255,0.2);
         }
         .navbar__logo img { height: 80px; width: auto; display: block; border-radius: 8px; }
         .footer__brand img { height: 52px; width: auto; border-radius: 6px; margin-bottom: 16px; }
@@ -435,39 +435,83 @@
         /* ─── ORBITAL DIFFERENTIALS ─── */
         .diferencial-orb { padding: 100px 60px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
         .diferencial-orb__inner { max-width: 1200px; margin: 0 auto; }
-        .dif-layout { display: grid; grid-template-columns: 1fr 400px; gap: 70px; align-items: center; margin-top: 60px; }
-        .dif-card {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 24px; padding: 48px 44px; position: relative; overflow: hidden;
-            transition: opacity 0.22s ease, transform 0.22s ease;
+        /* ─── TRUCK DELIVERY ─── */
+        .dif-truck-section { margin-top: 60px; }
+        .dif-road-wrap {
+            position: relative; height: 70px; margin-bottom: 36px;
         }
-        .dif-card::before {
+        .dif-road-line {
+            position: absolute; top: 50%; left: 0; right: 0;
+            height: 4px; border-radius: 2px;
+            background: linear-gradient(90deg, #004195, #5B9BFF);
+            transform: translateY(-50%);
+        }
+        .dif-road-line::after {
+            content: '';
+            position: absolute; bottom: -10px; left: 0; right: 0; height: 2px;
+            background: repeating-linear-gradient(90deg,
+                transparent 0px, transparent 14px,
+                rgba(255,255,255,0.07) 14px, rgba(255,255,255,0.07) 22px);
+        }
+        .dif-truck-icon {
+            position: absolute; top: 50%; left: -4px;
+            transform: translateY(-60%);
+            font-size: 38px; line-height: 1;
+            filter: drop-shadow(0 0 14px rgba(91,155,255,0.7));
+            transition: left 3.4s cubic-bezier(0.3, 0, 0.3, 1);
+            z-index: 2;
+        }
+        .dif-truck-icon.drive { left: calc(100% - 40px); }
+        .dif-stop-m {
+            position: absolute; top: 50%;
+            transform: translate(-50%, -50%); z-index: 1;
+        }
+        .dif-stop-dot {
+            display: block; width: 16px; height: 16px; border-radius: 50%;
+            background: var(--surface-2); border: 2px solid rgba(91,155,255,0.25);
+            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .dif-stop-m.passed .dif-stop-dot {
+            background: #004195; border-color: var(--accent);
+            box-shadow: 0 0 14px rgba(91,155,255,0.55);
+        }
+        .dif-cards-track {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+        }
+        .dif-deliv {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+            padding: 28px 18px; text-align: center;
+            opacity: 0; transform: translateY(32px) scale(0.95);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.2,0.64,1), border-color 0.25s ease;
+            position: relative; overflow: hidden;
+        }
+        .dif-deliv::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--blue), var(--accent)); border-radius: 24px 24px 0 0;
+            background: linear-gradient(90deg, #004195, #5B9BFF);
         }
-        .dif-card__stop { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-        .dif-card__ico {
-            width: 60px; height: 60px; border-radius: 16px; background: rgba(0,82,204,.15);
-            display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--accent); margin-bottom: 24px;
+        .dif-deliv.dropped { opacity: 1; transform: translateY(0) scale(1); }
+        .dif-deliv:hover { border-color: rgba(91,155,255,.4); transform: translateY(-4px) scale(1); }
+        .dif-deliv__icon {
+            width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 14px;
+            background: rgba(0,65,149,.2); display: flex; align-items: center;
+            justify-content: center; font-size: 22px; color: var(--accent);
+            transition: transform 0.3s ease;
         }
-        .dif-card__title { font-family: 'Poppins', sans-serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 800; color: var(--white); margin-bottom: 14px; line-height: 1.15; }
-        .dif-card__text { font-size: 16px; color: var(--gray-lt); line-height: 1.75; margin-bottom: 36px; }
-        .dif-card__nav { display: flex; align-items: center; gap: 16px; }
-        .dif-nav-btn {
-            width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
-            background: var(--surface-2); color: var(--white); cursor: pointer; font-size: 16px;
-            display: flex; align-items: center; justify-content: center; transition: var(--ease); line-height: 1;
+        .dif-deliv:hover .dif-deliv__icon { transform: scale(1.1) rotate(-6deg); }
+        .dif-deliv__num {
+            font-size: 10px; font-weight: 800; letter-spacing: 2px;
+            color: var(--accent); margin-bottom: 10px; text-transform: uppercase;
         }
-        .dif-nav-btn:hover { border-color: var(--accent); background: rgba(91,155,255,.1); color: var(--accent); }
-        .dif-dots { display: flex; gap: 8px; align-items: center; }
-        .dif-dot-nav { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: all 0.3s ease; cursor: pointer; border: none; padding: 0; }
-        .dif-dot-nav.active { background: var(--accent); width: 24px; border-radius: 4px; }
-        .dif-orbit-wrap { position: relative; }
-        .dif-orbit { width: 100%; height: auto; display: block; }
+        .dif-deliv__title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(12px, 1.2vw, 14px); font-weight: 700;
+            color: var(--white); margin-bottom: 8px; line-height: 1.35;
+        }
+        .dif-deliv__text { font-size: 12px; color: var(--gray-lt); line-height: 1.65; }
 
         /* ─── CALLOUT BAND ─── */
         .callout-band {
-            background: var(--blue);
+            background: linear-gradient(135deg, #004195 0%, #062E61 50%, #001E44 100%);
             padding: 60px 60px;
         }
         .callout-band__inner {
@@ -625,21 +669,28 @@
             margin-bottom: 28px; letter-spacing: 0.3px;
         }
 
-        .ne-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+        .ne-tags { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
 
         .ne-tag {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: rgba(0,82,204,.12);
-            border: 1px solid rgba(91,155,255,.28);
-            border-radius: 100px;
-            padding: 13px 22px;
-            font-size: clamp(15px, 1.8vw, 21px);
-            font-weight: 700; color: var(--white);
-            opacity: 0; transform: scale(0.82) translateY(12px);
-            transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+            display: flex; align-items: center; gap: 16px;
+            background: rgba(0,65,149,.1);
+            border: 1px solid rgba(91,155,255,.2);
+            border-radius: 18px; padding: 18px 26px;
+            opacity: 0; transform: translateX(-28px);
+            transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.34,1.4,0.64,1), background 0.25s ease, border-color 0.25s ease;
+            cursor: default;
         }
-        .ne-tag.visible { opacity: 1; transform: scale(1) translateY(0); }
-        .ne-tag i { color: var(--accent); font-size: 14px; flex-shrink: 0; }
+        .ne-tag.visible { opacity: 1; transform: translateX(0); }
+        .ne-tag:hover { background: rgba(0,65,149,.22); border-color: rgba(91,155,255,.5); }
+        .ne-tag__icon {
+            width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
+            background: rgba(0,65,149,.3); display: flex; align-items: center;
+            justify-content: center; font-size: 20px; color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        .ne-tag:hover .ne-tag__icon { transform: scale(1.12) rotate(-5deg); }
+        .ne-tag__word { font-size: clamp(15px, 1.8vw, 18px); font-weight: 800; color: var(--white); }
+        .ne-tag__sub { font-size: 12px; color: var(--gray-lt); margin-top: 3px; }
 
         /* ─── ZONAS ─── */
         .zonas {
@@ -813,8 +864,9 @@
             .differentials { padding: 64px 24px; }
             .diff-grid { grid-template-columns: 1fr; }
             .diferencial-orb { padding: 64px 24px; }
-            .dif-layout { grid-template-columns: 1fr; gap: 40px; }
-            .dif-orbit-wrap { max-width: 280px; margin: 0 auto; }
+            .dif-cards-track { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .dif-road-wrap { height: 56px; }
+            .dif-truck-icon { font-size: 28px; }
             .dif-card { padding: 32px 28px; }
             .callout-band { padding: 48px 24px; }
             .zonas { padding: 64px 24px; }
@@ -1165,36 +1217,47 @@
                 <span class="section-label">Por qué Shipment</span>
                 <h2 class="section-title">La logística que <em>no te falla</em></h2>
             </div>
-            <div class="dif-layout">
-                <div class="dif-card" id="difCard">
-                    <div class="dif-card__stop" id="difStop">PARADA 01</div>
-                    <div class="dif-card__ico" id="difIcon"><i class="fas fa-check-double"></i></div>
-                    <h3 class="dif-card__title" id="difTitle">Cumplimos horarios Flex</h3>
-                    <p class="dif-card__text" id="difText">Entregamos dentro del horario de Mercado Libre todos los días. Tu reputación está protegida.</p>
-                    <div class="dif-card__nav">
-                        <button class="dif-nav-btn" onclick="difPrev()">&#8592;</button>
-                        <div class="dif-dots" id="difDots"></div>
-                        <button class="dif-nav-btn" onclick="difNext()">&#8594;</button>
-                    </div>
+            <div class="dif-truck-section" id="difTruckSection">
+                <div class="dif-road-wrap">
+                    <div class="dif-road-line"></div>
+                    <div class="dif-truck-icon" id="difTruck">🚚</div>
+                    <div class="dif-stop-m" style="left:10%"><span class="dif-stop-dot"></span></div>
+                    <div class="dif-stop-m" style="left:28%"><span class="dif-stop-dot"></span></div>
+                    <div class="dif-stop-m" style="left:46%"><span class="dif-stop-dot"></span></div>
+                    <div class="dif-stop-m" style="left:64%"><span class="dif-stop-dot"></span></div>
+                    <div class="dif-stop-m" style="left:82%"><span class="dif-stop-dot"></span></div>
                 </div>
-                <div class="dif-orbit-wrap">
-                    <svg class="dif-orbit" viewBox="0 0 400 400" id="difSvg">
-                        <defs>
-                            <filter id="nodeGlow">
-                                <feGaussianBlur stdDeviation="3" result="blur"/>
-                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                            </filter>
-                            <filter id="dotGlow">
-                                <feGaussianBlur stdDeviation="5" result="blur"/>
-                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                            </filter>
-                        </defs>
-                        <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(91,155,255,0.1)" stroke-width="1.5" stroke-dasharray="6,5"/>
-                        <circle cx="200" cy="200" r="90" fill="none" stroke="rgba(91,155,255,0.06)" stroke-width="1"/>
-                        <path id="difArc" fill="none" stroke-width="2.5" stroke-linecap="round" stroke="#5B9BFF" opacity="0.7"/>
-                        <circle id="difDot" r="5" fill="white" filter="url(#dotGlow)"/>
-                        <g id="difNodes"></g>
-                    </svg>
+                <div class="dif-cards-track">
+                    <div class="dif-deliv" id="dif1">
+                        <div class="dif-deliv__icon"><i class="fas fa-check-double"></i></div>
+                        <div class="dif-deliv__num">01</div>
+                        <div class="dif-deliv__title">Cumplimos horarios Flex</div>
+                        <div class="dif-deliv__text">Entregamos en tiempo. Tu reputación Flex, protegida todos los días.</div>
+                    </div>
+                    <div class="dif-deliv" id="dif2">
+                        <div class="dif-deliv__icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="dif-deliv__num">02</div>
+                        <div class="dif-deliv__title">Sin excusas ni demoras</div>
+                        <div class="dif-deliv__text">Atención directa, sin intermediarios. Problemas resueltos en el día.</div>
+                    </div>
+                    <div class="dif-deliv" id="dif3">
+                        <div class="dif-deliv__icon"><i class="fas fa-boxes-stacking"></i></div>
+                        <div class="dif-deliv__num">03</div>
+                        <div class="dif-deliv__title">Escalamos con vos</div>
+                        <div class="dif-deliv__text">Desde 15 hasta cientos de envíos diarios sin cambiar de operador.</div>
+                    </div>
+                    <div class="dif-deliv" id="dif4">
+                        <div class="dif-deliv__icon"><i class="fas fa-route"></i></div>
+                        <div class="dif-deliv__num">04</div>
+                        <div class="dif-deliv__title">CABA, GBA Sur y La Plata</div>
+                        <div class="dif-deliv__text">Cobertura amplia con centros propios en Avellaneda y La Plata.</div>
+                    </div>
+                    <div class="dif-deliv" id="dif5">
+                        <div class="dif-deliv__icon"><i class="fas fa-star"></i></div>
+                        <div class="dif-deliv__num">05</div>
+                        <div class="dif-deliv__title">Tu reputación, arriba</div>
+                        <div class="dif-deliv__text">Cada entrega a tiempo suma estrellas y consolida tu cuenta.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1269,11 +1332,26 @@
                 <p class="ne-cta-label">Compra:</p>
             </div>
             <div class="ne-tags">
-                <span class="ne-tag ne-item"><i class="fas fa-dove"></i> Tranquilidad</span>
-                <span class="ne-tag ne-item"><i class="fas fa-check-double"></i> Cumplimiento</span>
-                <span class="ne-tag ne-item"><i class="fas fa-star"></i> Reputación</span>
-                <span class="ne-tag ne-item"><i class="fas fa-arrow-trend-up"></i> Escalabilidad</span>
-                <span class="ne-tag ne-item"><i class="fas fa-face-smile"></i> Menos quilombos</span>
+                <div class="ne-tag ne-item">
+                    <div class="ne-tag__icon"><i class="fas fa-dove"></i></div>
+                    <div><div class="ne-tag__word">Tranquilidad</div><div class="ne-tag__sub">Tu negocio, sin sorpresas</div></div>
+                </div>
+                <div class="ne-tag ne-item">
+                    <div class="ne-tag__icon"><i class="fas fa-check-double"></i></div>
+                    <div><div class="ne-tag__word">Cumplimiento</div><div class="ne-tag__sub">Cero penalizaciones Flex</div></div>
+                </div>
+                <div class="ne-tag ne-item">
+                    <div class="ne-tag__icon"><i class="fas fa-star"></i></div>
+                    <div><div class="ne-tag__word">Reputación</div><div class="ne-tag__sub">Más estrellas, más ventas</div></div>
+                </div>
+                <div class="ne-tag ne-item">
+                    <div class="ne-tag__icon"><i class="fas fa-arrow-trend-up"></i></div>
+                    <div><div class="ne-tag__word">Escalabilidad</div><div class="ne-tag__sub">Crecé sin cambiar de logística</div></div>
+                </div>
+                <div class="ne-tag ne-item">
+                    <div class="ne-tag__icon"><i class="fas fa-face-smile"></i></div>
+                    <div><div class="ne-tag__word">Menos quilombos</div><div class="ne-tag__sub">Atención directa, siempre</div></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1677,107 +1755,45 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        /* ── ORBITAL DIFFERENTIALS ── */
-        (function() {
-            const STOPS = [
-                { icon: 'fa-check-double',  title: 'Cumplimos horarios Flex',      text: 'Entregamos dentro del horario de Mercado Libre todos los días. Tu reputación está protegida.' },
-                { icon: 'fa-calendar-check',title: 'Trabajamos los sábados',        text: 'Mientras otras logísticas descansan, nosotros operamos. Tu negocio no para, nosotros tampoco.' },
-                { icon: 'fa-user-check',    title: 'Atención directa y humana',     text: 'Tenés acceso a quien maneja tu operación. Sin bots, sin derivaciones.' },
-                { icon: 'fa-shield-alt',    title: 'Nos hacemos cargo',             text: 'Si hay pérdida o rotura, respondemos. Sin vueltas. Sin excusas.' },
-                { icon: 'fa-truck',         title: '+50 vehículos activos',         text: 'Estructura real para absorber tu volumen sin perder calidad ni tiempos.' },
-            ];
-            const N = STOPS.length, CX = 200, CY = 200, R = 150;
-            let cur = 0, dotAngle = -Math.PI / 2, auto;
-
-            function pos(i) {
-                const a = -Math.PI / 2 + i * 2 * Math.PI / N;
-                return [CX + R * Math.cos(a), CY + R * Math.sin(a)];
+        /* ── TRUCK DELIVERY ANIMATION ── */
+        var difTruckTimers = [];
+        function resetDifTruck() {
+            difTruckTimers.forEach(clearTimeout);
+            difTruckTimers = [];
+            var truck = document.getElementById('difTruck');
+            if (truck) {
+                truck.style.transition = 'none';
+                truck.classList.remove('drive');
+                truck.offsetHeight;
+                truck.style.transition = '';
             }
-
-            function buildOrbit() {
-                const g = document.getElementById('difNodes');
-                const dotsEl = document.getElementById('difDots');
-                if (!g || !dotsEl) return;
-                g.innerHTML = '';
-                dotsEl.innerHTML = '';
-                const NS = 'http://www.w3.org/2000/svg';
-                for (let i = 0; i < N; i++) {
-                    const [x, y] = pos(i);
-                    const act = i === cur;
-                    if (act) {
-                        const gl = document.createElementNS(NS, 'circle');
-                        gl.setAttribute('cx', x); gl.setAttribute('cy', y);
-                        gl.setAttribute('r', '32'); gl.setAttribute('fill', 'rgba(91,155,255,0.1)');
-                        g.appendChild(gl);
-                    }
-                    const c = document.createElementNS(NS, 'circle');
-                    c.setAttribute('cx', x); c.setAttribute('cy', y);
-                    c.setAttribute('r', act ? '22' : '16');
-                    c.setAttribute('fill', act ? '#0052CC' : '#0C1A2E');
-                    c.setAttribute('stroke', act ? '#5B9BFF' : 'rgba(91,155,255,0.3)');
-                    c.setAttribute('stroke-width', act ? '2.5' : '1.5');
-                    if (act) c.setAttribute('filter', 'url(#nodeGlow)');
-                    c.style.cursor = 'pointer';
-                    c.addEventListener('click', () => difSet(i));
-                    g.appendChild(c);
-                    const t = document.createElementNS(NS, 'text');
-                    t.setAttribute('x', x); t.setAttribute('y', y + 5);
-                    t.setAttribute('text-anchor', 'middle');
-                    t.setAttribute('font-family', 'Poppins,sans-serif');
-                    t.setAttribute('font-size', act ? '13' : '11');
-                    t.setAttribute('font-weight', '700');
-                    t.setAttribute('fill', act ? '#fff' : 'rgba(255,255,255,0.35)');
-                    t.setAttribute('pointer-events', 'none');
-                    t.textContent = String(i + 1).padStart(2, '0');
-                    g.appendChild(t);
-                    const d = document.createElement('button');
-                    d.className = 'dif-dot-nav' + (act ? ' active' : '');
-                    d.addEventListener('click', () => difSet(i));
-                    dotsEl.appendChild(d);
-                }
-                const arc = document.getElementById('difArc');
-                if (arc) {
-                    const [px, py] = pos((cur - 1 + N) % N);
-                    const [cx2, cy2] = pos(cur);
-                    arc.setAttribute('d', 'M ' + px + ' ' + py + ' A ' + R + ' ' + R + ' 0 0 1 ' + cx2 + ' ' + cy2);
-                }
-            }
-
-            function difSet(i) {
-                cur = i;
-                buildOrbit();
-                const s = STOPS[i];
-                const card = document.getElementById('difCard');
-                if (card) {
-                    card.style.opacity = '0'; card.style.transform = 'translateY(10px)';
-                    setTimeout(function() {
-                        document.getElementById('difStop').textContent = 'PARADA ' + String(i + 1).padStart(2, '0');
-                        document.getElementById('difIcon').innerHTML = '<i class="fas ' + s.icon + '"></i>';
-                        document.getElementById('difTitle').textContent = s.title;
-                        document.getElementById('difText').textContent = s.text;
-                        card.style.opacity = '1'; card.style.transform = 'translateY(0)';
-                    }, 180);
-                }
-                clearInterval(auto);
-                auto = setInterval(function() { difSet((cur + 1) % N); }, 4500);
-            }
-
-            window.difPrev = function() { difSet((cur - 1 + N) % N); };
-            window.difNext = function() { difSet((cur + 1) % N); };
-
-            (function animDot() {
-                dotAngle += 0.007;
-                const dot = document.getElementById('difDot');
-                if (dot) {
-                    dot.setAttribute('cx', CX + R * Math.cos(dotAngle));
-                    dot.setAttribute('cy', CY + R * Math.sin(dotAngle));
-                }
-                requestAnimationFrame(animDot);
-            })();
-
-            buildOrbit();
-            auto = setInterval(function() { difSet((cur + 1) % N); }, 4500);
-        })();
+            document.querySelectorAll('.dif-stop-m').forEach(function(m) { m.classList.remove('passed'); });
+            document.querySelectorAll('.dif-deliv').forEach(function(c) { c.classList.remove('dropped'); });
+        }
+        function runDifTruck() {
+            resetDifTruck();
+            var truck = document.getElementById('difTruck');
+            var markers = document.querySelectorAll('.dif-stop-m');
+            var cards = document.querySelectorAll('.dif-deliv');
+            difTruckTimers.push(setTimeout(function() {
+                if (truck) truck.classList.add('drive');
+            }, 120));
+            var delays = [380, 1020, 1660, 2300, 2940];
+            delays.forEach(function(d, i) {
+                difTruckTimers.push(setTimeout(function() {
+                    if (markers[i]) markers[i].classList.add('passed');
+                    if (cards[i]) cards[i].classList.add('dropped');
+                }, d));
+            });
+        }
+        var difTruckObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) runDifTruck();
+                else resetDifTruck();
+            });
+        }, { threshold: 0.25 });
+        var difSection = document.getElementById('difTruckSection');
+        if (difSection) difTruckObs.observe(difSection);
     </script>
 </body>
 </html>
