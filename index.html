@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipment Logística — Logística para Mercado Libre Flex y Ecommerce</title>
+    <title>Shipment Logística : Logística para Mercado Libre Flex y Ecommerce</title>
     <meta name="description" content="Logística confiable para vendedores de Mercado Libre Flex y ecommerce. Cumplimos horarios, trabajamos sábados, +50 vehículos. CABA, Zona Sur y La Plata.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +60,7 @@
         }
         .navbar__logo::after { content: none; }
         .navbar__logo img { height: 80px; width: auto; display: block; border-radius: 50%; }
-        .footer__brand img { height: 52px; width: auto; border-radius: 50%; margin-bottom: 16px; }
+        .footer__brand img { height: 52px; width: auto; border-radius: 50%; margin-bottom: 16px; mix-blend-mode: screen; }
         .navbar__logo-fallback {
             font-family: 'Poppins', sans-serif;
             font-size: 20px; font-weight: 800; letter-spacing: 0.5px;
@@ -72,6 +72,7 @@
         }
         .navbar__logo img {
             height: 80px; border-radius: 0; display: block;
+            mix-blend-mode: screen;
         }
         .btn-nav-cta {
             display: inline-flex; align-items: center; gap: 10px;
@@ -753,7 +754,7 @@
         /* Items absolutely positioned around hub */
         .ne-radial .ne-tag {
             position: absolute; transform: translate(-50%, -50%) scale(0.5);
-            opacity: 0; z-index: 2; width: max-content; max-width: 190px;
+            opacity: 0; z-index: 2; width: max-content; max-width: 260px;
             transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34,1.3,0.64,1);
         }
         .ne-radial .ne-tag.visible {
@@ -926,17 +927,13 @@
             .pain__layout { grid-template-columns: 1fr; gap: 32px; }
             .pain__left { position: static; }
             .pain__left .btn-wa-lg { display: none; }
-            .journey { padding: 64px 0; }
-            .journey__inner { padding: 0 24px; }
-            .journey__road { display: none; }
-            .journey__truck { display: none; }
-            .journey__stops { flex-direction: column; gap: 0; }
-            .jstop { flex-direction: row; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
-            .jstop:last-child { border-bottom: none; }
-            .jstop__dot { margin-top: 0; flex-shrink: 0; }
-            .jstop__content { margin-top: 0; text-align: left; padding: 0; }
-            .jstop__icon { font-size: 28px; margin-bottom: 6px; }
-            .jstop__title { font-size: 15px; }
+            .journey { padding: 48px 0; }
+            .journey__inner { padding: 0 16px; }
+            .journey__track-wrap { margin-top: 36px; }
+            .journey__truck { font-size: 22px; top: 5px; }
+            .jstop__content { margin-top: 14px; padding: 0 2px; }
+            .jstop__icon { font-size: 18px; margin-bottom: 0; }
+            .jstop__title { display: none; }
             .jstop__desc { display: none; }
             .differentials { padding: 64px 24px; }
             .diff-grid { grid-template-columns: 1fr; }
@@ -950,12 +947,13 @@
             .zonas__grid { grid-template-columns: 1fr; gap: 40px; }
             .testimonios { padding: 64px 24px; }
             .testimonios__grid { grid-template-columns: 1fr; }
-            .equipo { padding: 64px 24px; }
+            .equipo { padding: 48px 16px; }
             .equipo__grid {
                 grid-template-columns: 1fr 1fr;
-                grid-auto-rows: 160px;
+                grid-auto-rows: 130px;
+                gap: 6px;
             }
-            .foto-slot[data-id] { grid-column: auto !important; grid-row: auto !important; height: 160px !important; }
+            .foto-slot[data-id] { grid-column: auto !important; grid-row: auto !important; height: 130px !important; }
             .no-envios { padding: 64px 24px; }
             /* Radial → vertical list on mobile */
             .ne-radial {
@@ -1111,7 +1109,7 @@
 
             <p class="hero__sub">
                 Con Shipment, cada entrega suma a tu reputación. Cumplimos los horarios Flex
-                todos los días — entregas en el día, atención directa, sin excusas.
+                todos los días : entregas en el día, atención directa, sin excusas.
             </p>
 
             <div class="hero__ctas">
@@ -1206,7 +1204,7 @@
                 <div class="pain__left">
                     <span class="pain__left-label">¿Te suena familiar?</span>
                     <h2>Tu logística<br>te está costando <em>plata</em></h2>
-                    <p>Mercado Libre penaliza fuerte las entregas fuera de horario. Cada tarde es reputación perdida — y eso se traduce en menos ventas.</p>
+                    <p>Mercado Libre penaliza fuerte las entregas fuera de horario. Cada tarde es reputación perdida : y eso se traduce en menos ventas.</p>
                     <a href="https://wa.me/5491168500341?text=Hola%2C%20quiero%20consultar%20por%20log%C3%ADstica%20para%20mi%20ecommerce"
                        class="btn-wa-lg" target="_blank" rel="noopener">
                         <i class="fab fa-whatsapp"></i> Resolver esto
@@ -1573,7 +1571,7 @@
                     ¿Hay un mínimo de envíos para trabajar juntos?
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <div class="faq-a">Trabajamos con negocios que hacen mínimo 15 envíos diarios. Si estás en ese rango o cerca, consultanos. Si tu volumen puede crecer, mejor todavía — tenemos descuento por volumen.</div>
+                <div class="faq-a">Trabajamos con negocios que hacen mínimo 15 envíos diarios. Si estás en ese rango o cerca, consultanos. Si tu volumen puede crecer, mejor todavía : tenemos descuento por volumen.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q" aria-expanded="false">
