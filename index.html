@@ -982,10 +982,16 @@
             .equipo { padding: 32px 12px; }
             .equipo__grid {
                 grid-template-columns: 1fr 1fr;
-                grid-auto-rows: 110px;
-                gap: 4px;
+                grid-template-rows: none;
+                grid-auto-rows: 120px;
+                gap: 6px;
             }
-            .foto-slot[data-id] { grid-column: auto !important; grid-row: auto !important; height: 110px !important; }
+            .foto-slot[data-id="1"], .foto-slot[data-id="2"],
+            .foto-slot[data-id="3"], .foto-slot[data-id="4"],
+            .foto-slot[data-id="5"], .foto-slot[data-id="6"] {
+                grid-column: auto !important; grid-row: auto !important;
+                height: 120px !important;
+            }
             .no-envios { padding: 64px 24px; }
             /* Radial → vertical list on mobile */
             .ne-radial {
@@ -1386,7 +1392,7 @@
             </div>
 
             <div class="equipo__admin">
-                <p class="equipo__hint">Clic en cada recuadro para cargar una foto. Luego descargá la página para que las fotos se vean en todos los dispositivos.</p>
+                
                 <button class="btn-save" id="btn-save" onclick="downloadHTML()">
                     <i class="fas fa-download"></i> Guardar página con fotos
                 </button>
