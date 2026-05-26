@@ -122,6 +122,8 @@
             background: var(--surface); border-bottom: 1px solid var(--border);
             padding: 20px 24px; flex-direction: column; gap: 12px; z-index: 99;
         }
+        .mobile-menu-overlay { display: none; position: fixed; inset: 0; z-index: 98; }
+        .mobile-menu-overlay.open { display: block; }
         .mobile-menu.open { display: flex; }
         .mobile-menu a {
             color: var(--white); text-decoration: none;
@@ -1107,7 +1109,7 @@
             <span id="logo-text" class="navbar__logo-fallback" style="display:none">Shipment<span>LOGÍSTICA</span></span>
         </a>
         <ul class="navbar__links">
-            <li><a href="#diferencial">Por qué Shipment</a></li>
+            <li><a href="#no-envios">Por qué Shipment</a></li>
             <li><a href="#ruta">Cómo funciona</a></li>
             <li><a href="#zonas">Zonas</a></li>
             <li><a href="#testimonios">Testimonios</a></li>
@@ -1124,8 +1126,9 @@
     </nav>
 
     <!-- MOBILE MENU -->
+    <div class="mobile-menu-overlay" id="menu-overlay" onclick="closeMenu()"></div>
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#diferencial" onclick="closeMenu()">Por qué Shipment</a>
+        <a href="#no-envios" onclick="closeMenu()">Por qué Shipment</a>
         <a href="#ruta"        onclick="closeMenu()">Cómo funciona</a>
         <a href="#zonas"       onclick="closeMenu()">Zonas</a>
         <a href="#testimonios" onclick="closeMenu()">Testimonios</a>
@@ -1427,8 +1430,7 @@
     <section class="testimonios" id="testimonios">
         <div class="section-header">
             <span class="section-label">Lo que dicen nuestros clientes</span>
-            <h2 class="section-title">Negocios que volvieron.<br>Y <em>no se van más.</em></h2>
-            <p class="section-sub">La mayoría probaron otras logísticas antes. Acá están sus palabras.</p>
+            <h2 class="section-title">Negocios que nos conocieron,<br>y <em>no se van más.</em></h2>
         </div>
         <div class="testimonios__grid">
             <div class="tcard reveal">
@@ -1541,7 +1543,7 @@
             <div class="footer__col">
                 <h4>Navegación</h4>
                 <ul>
-                    <li><a href="#diferencial">Por qué Shipment</a></li>
+                    <li><a href="#no-envios">Por qué Shipment</a></li>
                     <li><a href="#ruta">Cómo funciona</a></li>
                     <li><a href="#zonas">Zonas</a></li>
                     <li><a href="#testimonios">Testimonios</a></li>
@@ -1570,8 +1572,14 @@
 
     <script>
         /* ── Mobile menu ── */
-        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
-        function closeMenu()  { document.getElementById('mobile-menu').classList.remove('open'); }
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+            document.getElementById('menu-overlay').classList.toggle('open');
+        }
+        function closeMenu() {
+            document.getElementById('mobile-menu').classList.remove('open');
+            document.getElementById('menu-overlay').classList.remove('open');
+        }
 
         /* ── FAQ accordion ── */
         document.querySelectorAll('.faq-q').forEach(btn => {
