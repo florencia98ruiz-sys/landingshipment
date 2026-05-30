@@ -64,7 +64,7 @@
             display: flex;
             align-items: stretch;
             justify-content: space-between;
-            height: 80px;
+            height: 110px;
             padding: 0 60px 0 24px;
             background: linear-gradient(135deg, rgba(0,65,149,0.97) 0%, rgba(6,46,97,0.97) 50%, rgba(0,30,68,0.97) 100%);
             backdrop-filter: blur(14px);
@@ -72,7 +72,7 @@
         }
         .navbar__logo {
             display: flex; align-items: center;
-            position: relative; overflow: hidden;
+            position: relative;
         }
         .navbar__logo::after { content: none; }
         .navbar__logo img { height: 80px; width: auto; display: block; border-radius: 50%; }
@@ -100,7 +100,7 @@
         .btn-nav-cta:hover { background: rgba(0,65,149,0.5); border-color: rgba(91,155,255,0.45); }
         .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
         .navbar__links a {
-            color: var(--gray-lt); text-decoration: none;
+            color: var(--white); text-decoration: none;
             font-size: 14px; font-weight: 500; transition: color var(--ease);
         }
         .navbar__links a:hover { color: var(--white); }
@@ -910,7 +910,7 @@
         }
         .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
         .footer__col ul li { font-size: 14px; color: var(--gray-lt); }
-        .footer__col ul li a { color: var(--gray-lt); text-decoration: none; transition: color var(--ease); }
+        .footer__col ul li a { color: var(--white); text-decoration: none; transition: color var(--ease); }
         .footer__col ul li a:hover { color: var(--white); }
         .footer__bottom {
             max-width: 1100px; margin: 0 auto; padding-top: 24px;
@@ -943,7 +943,7 @@
         }
         @media (max-width: 768px) {
             .navbar { padding: 0 16px 0 0; height: 72px; }
-            .navbar__logo img { height: 195px; }
+            .navbar__logo img { height: 240px; }
             .navbar__links { display: none; }
             .hamburger { display: flex; }
             .hero { padding: 100px 24px 60px; }
