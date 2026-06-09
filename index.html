@@ -804,13 +804,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
         }
         .zonas__inner { max-width: 1100px; margin: 0 auto; }
-        .zonas__grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
+        
         .zonas__left h3 { font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 800; margin-bottom: 8px; }
         .zonas__sub { font-size: 15px; color: var(--gray-lt); margin-bottom: 28px; }
         .zona-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
         .zona-list li { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; }
         .zona-list li i { color: var(--yellow); width: 18px; }
-        .zonas__right { display: flex; flex-direction: column; gap: 14px; }
+        
         .zona-card {
             background: var(--bg); border: 1px solid var(--border); border-radius: var(--r);
             padding: 20px 24px; display: flex; align-items: center; gap: 16px;
@@ -1001,7 +1001,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .diferencial-orb { padding: 48px 16px; }
             .callout-band { padding: 48px 24px; }
             .zonas { padding: 64px 24px; }
-            .zonas__grid { grid-template-columns: 1fr; gap: 40px; }
+            
             .testimonios { padding: 64px 24px; }
             .testimonios__grid { grid-template-columns: 1fr; }
             .equipo { padding: 32px 12px; }
@@ -1052,7 +1052,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .mapa-svg-zonas { width: 100%; height: auto; display: block; }
         /* ─── MAPA GOOGLE ─── */
-        .zonas__grid { align-items: center; }
+        
         .mapa-google {
             position: relative;
             border-radius: var(--r-lg);
@@ -1120,6 +1120,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         @media (max-width: 768px) {
             .mapa-google { height: 300px; margin-top: 32px; }
         }
+    
+        /* --- MAPA ZONAS --- */
+        .zonas__inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .zonas__header { text-align: center; margin-bottom: 40px; }
+        .zonas__header h3 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--white); margin: 10px 0 16px; }
+        .zonas__header .zonas__sub { color: var(--text-dim); font-size: 1.05rem; }
+        .mapa-zonas { position: relative; width: 100%; height: 540px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+        .mapa-zonas__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .mapa-zonas__labels { position: absolute; inset: 0; pointer-events: none; }
+        .mz-label {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.93);
+            color: #0a1628;
+            font-size: 10.5px;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 3px 9px;
+            border-radius: 12px;
+            border: 1.5px solid rgba(0,65,149,0.55);
+            white-space: nowrap;
+            pointer-events: none;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+            line-height: 1.4;
+        }
+        @media (max-width: 640px) {
+            .mapa-zonas { height: 380px; }
+            .mz-label { font-size: 8.5px; padding: 2px 6px; }
+        }
+
     </style>
 </head>
 <body>
@@ -1423,62 +1453,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ZONAS -->
     <section class="zonas" id="zonas">
         <div class="zonas__inner">
-            <div class="zonas__grid">
-                <div class="zonas__left">
-                    <span class="section-label">Cobertura operativa</span>
-                    <h3>Operamos donde<br>tu negocio vende</h3>
-                    <p class="zonas__sub">Más de 47 zonas de entrega activas en GBA y alrededores:</p>
-                </div>
-                <div class="zonas__right">
-                    <div class="zonas-chips">
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> 3 de Febrero</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Almirante Brown</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Avellaneda</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Berazategui</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Berisso</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> CABA</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Campana</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Cañuelas</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Del Viso</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Derqui</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Ensenada</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Escobar</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Esteban Echeverría</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Ezeiza</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Florencio Varela</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Garin</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> General Rodríguez</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Guernica</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Hurlingham</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Ingeniero Maschwitz</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Ituzaingó</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> José C. Paz</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> La Matanza Norte</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> La Matanza Sur</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Lanús</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> La Plata Centro</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> La Plata Norte</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> La Plata Oeste</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Lomas de Zamora</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Luján</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Malvinas Argentinas</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Marcos Paz</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Merlo</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Moreno</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Morón</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Nordelta</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Pilar</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Quilmes</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> San Fernando</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> San Isidro</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> San Martín</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> San Miguel</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> San Vicente</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Tigre</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Vicente López</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Villa Rosa</span>
-                        <span class="zona-chip"><i class="fas fa-location-dot"></i> Zárate</span>
-                    </div>
+            <div class="zonas__header">
+                <span class="section-label">Cobertura operativa</span>
+                <h3>Operamos donde<br>tu negocio vende</h3>
+                <p class="zonas__sub">Más de 47 zonas de entrega activas en GBA y alrededores:</p>
+            </div>
+            <div class="mapa-zonas">
+                <iframe class="mapa-zonas__frame"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-59.35,-35.20,-57.75,-33.85&layer=mapnik"
+                    allowfullscreen loading="lazy"></iframe>
+                <div class="mapa-zonas__labels">
+                <span class="mz-label" style="top:18.5%;left:21.9%">Zárate</span>
+                <span class="mz-label" style="top:23.7%;left:25.0%">Campana</span>
+                <span class="mz-label" style="top:37.0%;left:34.4%">Escobar</span>
+                <span class="mz-label" style="top:39.3%;left:38.8%">Ingeniero Maschwitz</span>
+                <span class="mz-label" style="top:38.5%;left:44.4%">Nordelta</span>
+                <span class="mz-label" style="top:39.3%;left:28.1%">Villa Rosa</span>
+                <span class="mz-label" style="top:45.2%;left:26.9%">Pilar</span>
+                <span class="mz-label" style="top:45.9%;left:29.4%">Del Viso</span>
+                <span class="mz-label" style="top:48.1%;left:31.9%">Derqui</span>
+                <span class="mz-label" style="top:42.2%;left:36.2%">Garin</span>
+                <span class="mz-label" style="top:43.0%;left:48.1%">Tigre</span>
+                <span class="mz-label" style="top:44.4%;left:49.4%">San Fernando</span>
+                <span class="mz-label" style="top:45.9%;left:51.9%">San Isidro</span>
+                <span class="mz-label" style="top:48.1%;left:40.6%">Malvinas Argentinas</span>
+                <span class="mz-label" style="top:49.6%;left:36.9%">José C. Paz</span>
+                <span class="mz-label" style="top:51.1%;left:40.0%">San Miguel</span>
+                <span class="mz-label" style="top:49.6%;left:55.0%">Vicente López</span>
+                <span class="mz-label" style="top:53.3%;left:51.2%">San Martín</span>
+                <span class="mz-label" style="top:53.3%;left:15.0%">Luján</span>
+                <span class="mz-label" style="top:55.6%;left:24.4%">General Rodríguez</span>
+                <span class="mz-label" style="top:54.8%;left:44.4%">Hurlingham</span>
+                <span class="mz-label" style="top:55.6%;left:48.8%">3 de Febrero</span>
+                <span class="mz-label" style="top:57.8%;left:35.6%">Moreno</span>
+                <span class="mz-label" style="top:60.0%;left:42.5%">Ituzaingó</span>
+                <span class="mz-label" style="top:59.3%;left:45.6%">Morón</span>
+                <span class="mz-label" style="top:56.3%;left:56.9%">CABA</span>
+                <span class="mz-label" style="top:61.5%;left:45.0%">La Matanza Norte</span>
+                <span class="mz-label" style="top:61.5%;left:38.8%">Merlo</span>
+                <span class="mz-label" style="top:60.0%;left:61.3%">Avellaneda</span>
+                <span class="mz-label" style="top:63.0%;left:60.0%">Lanús</span>
+                <span class="mz-label" style="top:64.4%;left:68.1%">Quilmes</span>
+                <span class="mz-label" style="top:67.4%;left:59.4%">Lomas de Zamora</span>
+                <span class="mz-label" style="top:67.4%;left:71.2%">Berazategui</span>
+                <span class="mz-label" style="top:66.7%;left:43.8%">La Matanza Sur</span>
+                <span class="mz-label" style="top:68.9%;left:32.5%">Marcos Paz</span>
+                <span class="mz-label" style="top:71.1%;left:55.6%">Esteban Echeverría</span>
+                <span class="mz-label" style="top:71.9%;left:60.0%">Almirante Brown</span>
+                <span class="mz-label" style="top:72.6%;left:66.9%">Florencio Varela</span>
+                <span class="mz-label" style="top:75.6%;left:51.9%">Ezeiza</span>
+                <span class="mz-label" style="top:78.5%;left:61.3%">Guernica</span>
+                <span class="mz-label" style="top:85.9%;left:58.1%">San Vicente</span>
+                <span class="mz-label" style="top:88.9%;left:38.1%">Cañuelas</span>
+                <span class="mz-label" style="top:74.8%;left:90.0%">Ensenada</span>
+                <span class="mz-label" style="top:76.3%;left:91.9%">Berisso</span>
+                <span class="mz-label" style="top:75.6%;left:86.3%">La Plata Norte</span>
+                <span class="mz-label" style="top:79.3%;left:87.5%">La Plata Centro</span>
+                <span class="mz-label" style="top:80.0%;left:84.4%">La Plata Oeste</span>
                 </div>
             </div>
         </div>
