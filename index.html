@@ -1123,32 +1123,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
         /* --- MAPA ZONAS --- */
         .zonas__inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-        .zonas__header { text-align: center; margin-bottom: 40px; }
+        .zonas__header { text-align: center; margin-bottom: 36px; }
         .zonas__header h3 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--white); margin: 10px 0 16px; }
         .zonas__header .zonas__sub { color: var(--text-dim); font-size: 1.05rem; }
-        .mapa-zonas { position: relative; width: 100%; height: 540px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
-        .mapa-zonas__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-        .mapa-zonas__labels { position: absolute; inset: 0; pointer-events: none; }
-        .mz-label {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            background: rgba(255,255,255,0.93);
-            color: #0a1628;
-            font-size: 10.5px;
-            font-weight: 600;
-            font-family: inherit;
-            padding: 3px 9px;
-            border-radius: 12px;
-            border: 1.5px solid rgba(0,65,149,0.55);
-            white-space: nowrap;
-            pointer-events: none;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-            line-height: 1.4;
-        }
-        @media (max-width: 640px) {
-            .mapa-zonas { height: 380px; }
-            .mz-label { font-size: 8.5px; padding: 2px 6px; }
-        }
+        .mapa-zonas { position: relative; width: 100%; height: 560px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+        #mapa-leaflet { width: 100%; height: 100%; z-index: 1; }
+        .mapa-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--surface); gap: 14px; color: var(--text-dim); z-index: 10; pointer-events: none; }
+        .mapa-spinner { width: 36px; height: 36px; border: 3px solid rgba(91,155,255,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .leaflet-tooltip.zona-tooltip { background: rgba(255,255,255,0.92); border: 1.5px solid rgba(0,65,149,0.6); color: #0a1628; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 12px; box-shadow: 0 1px 5px rgba(0,0,0,0.25); white-space: nowrap; }
+        .leaflet-tooltip.zona-tooltip::before { display: none; }
+        @media (max-width: 640px) { .mapa-zonas { height: 380px; } }
 
     </style>
 </head>
@@ -1458,58 +1443,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h3>Operamos donde<br>tu negocio vende</h3>
                 <p class="zonas__sub">Más de 47 zonas de entrega activas en GBA y alrededores:</p>
             </div>
-            <div class="mapa-zonas">
-                <iframe class="mapa-zonas__frame"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=-59.35,-35.20,-57.75,-33.85&layer=mapnik"
-                    allowfullscreen loading="lazy"></iframe>
-                <div class="mapa-zonas__labels">
-                <span class="mz-label" style="top:18.5%;left:21.9%">Zárate</span>
-                <span class="mz-label" style="top:23.7%;left:25.0%">Campana</span>
-                <span class="mz-label" style="top:37.0%;left:34.4%">Escobar</span>
-                <span class="mz-label" style="top:39.3%;left:38.8%">Ingeniero Maschwitz</span>
-                <span class="mz-label" style="top:38.5%;left:44.4%">Nordelta</span>
-                <span class="mz-label" style="top:39.3%;left:28.1%">Villa Rosa</span>
-                <span class="mz-label" style="top:45.2%;left:26.9%">Pilar</span>
-                <span class="mz-label" style="top:45.9%;left:29.4%">Del Viso</span>
-                <span class="mz-label" style="top:48.1%;left:31.9%">Derqui</span>
-                <span class="mz-label" style="top:42.2%;left:36.2%">Garin</span>
-                <span class="mz-label" style="top:43.0%;left:48.1%">Tigre</span>
-                <span class="mz-label" style="top:44.4%;left:49.4%">San Fernando</span>
-                <span class="mz-label" style="top:45.9%;left:51.9%">San Isidro</span>
-                <span class="mz-label" style="top:48.1%;left:40.6%">Malvinas Argentinas</span>
-                <span class="mz-label" style="top:49.6%;left:36.9%">José C. Paz</span>
-                <span class="mz-label" style="top:51.1%;left:40.0%">San Miguel</span>
-                <span class="mz-label" style="top:49.6%;left:55.0%">Vicente López</span>
-                <span class="mz-label" style="top:53.3%;left:51.2%">San Martín</span>
-                <span class="mz-label" style="top:53.3%;left:15.0%">Luján</span>
-                <span class="mz-label" style="top:55.6%;left:24.4%">General Rodríguez</span>
-                <span class="mz-label" style="top:54.8%;left:44.4%">Hurlingham</span>
-                <span class="mz-label" style="top:55.6%;left:48.8%">3 de Febrero</span>
-                <span class="mz-label" style="top:57.8%;left:35.6%">Moreno</span>
-                <span class="mz-label" style="top:60.0%;left:42.5%">Ituzaingó</span>
-                <span class="mz-label" style="top:59.3%;left:45.6%">Morón</span>
-                <span class="mz-label" style="top:56.3%;left:56.9%">CABA</span>
-                <span class="mz-label" style="top:61.5%;left:45.0%">La Matanza Norte</span>
-                <span class="mz-label" style="top:61.5%;left:38.8%">Merlo</span>
-                <span class="mz-label" style="top:60.0%;left:61.3%">Avellaneda</span>
-                <span class="mz-label" style="top:63.0%;left:60.0%">Lanús</span>
-                <span class="mz-label" style="top:64.4%;left:68.1%">Quilmes</span>
-                <span class="mz-label" style="top:67.4%;left:59.4%">Lomas de Zamora</span>
-                <span class="mz-label" style="top:67.4%;left:71.2%">Berazategui</span>
-                <span class="mz-label" style="top:66.7%;left:43.8%">La Matanza Sur</span>
-                <span class="mz-label" style="top:68.9%;left:32.5%">Marcos Paz</span>
-                <span class="mz-label" style="top:71.1%;left:55.6%">Esteban Echeverría</span>
-                <span class="mz-label" style="top:71.9%;left:60.0%">Almirante Brown</span>
-                <span class="mz-label" style="top:72.6%;left:66.9%">Florencio Varela</span>
-                <span class="mz-label" style="top:75.6%;left:51.9%">Ezeiza</span>
-                <span class="mz-label" style="top:78.5%;left:61.3%">Guernica</span>
-                <span class="mz-label" style="top:85.9%;left:58.1%">San Vicente</span>
-                <span class="mz-label" style="top:88.9%;left:38.1%">Cañuelas</span>
-                <span class="mz-label" style="top:74.8%;left:90.0%">Ensenada</span>
-                <span class="mz-label" style="top:76.3%;left:91.9%">Berisso</span>
-                <span class="mz-label" style="top:75.6%;left:86.3%">La Plata Norte</span>
-                <span class="mz-label" style="top:79.3%;left:87.5%">La Plata Centro</span>
-                <span class="mz-label" style="top:80.0%;left:84.4%">La Plata Oeste</span>
+            <div class="mapa-zonas" id="mapa-zonas-wrap">
+                <div id="mapa-leaflet"></div>
+                <div class="mapa-loading" id="mapa-loading">
+                    <div class="mapa-spinner"></div>
+                    <span>Cargando mapa...</span>
                 </div>
             </div>
         </div>
@@ -1862,6 +1800,87 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }, { threshold: 0.25 });
         var difSection = document.getElementById('difTruckSection');
         if (difSection) difTruckObs.observe(difSection);
+    </script>
+
+    <!-- Leaflet map init -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/osmtogeojson@3.0.0-beta.5/osmtogeojson.js"></script>
+    <script>
+    (function() {
+        if (!document.getElementById("mapa-leaflet")) return;
+
+        var map = L.map("mapa-leaflet", {
+            center: [-34.60, -58.60],
+            zoom: 9,
+            scrollWheelZoom: false,
+            zoomControl: true
+        });
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "© <a href='https://www.openstreetmap.org'>OpenStreetMap</a>",
+            maxZoom: 18
+        }).addTo(map);
+
+        var TARGET = {
+            "zárate":"Zárate","campana":"Campana","escobar":"Escobar","pilar":"Pilar",
+            "general rodríguez":"General Rodríguez","luján":"Luján","marcos paz":"Marcos Paz",
+            "merlo":"Merlo","moreno":"Moreno","la matanza":"La Matanza","morón":"Morón",
+            "hurlingham":"Hurlingham","ituzaingó":"Ituzaingó","tres de febrero":"3 de Febrero",
+            "general san martín":"San Martín","vicente lópez":"Vicente López",
+            "san isidro":"San Isidro","san fernando":"San Fernando","tigre":"Tigre",
+            "malvinas argentinas":"Malvinas Argentinas","josé c. paz":"José C. Paz",
+            "san miguel":"San Miguel",
+            "ciudad autónoma de buenos aires":"CABA",
+            "avellaneda":"Avellaneda","lanús":"Lanús","quilmes":"Quilmes",
+            "berazategui":"Berazategui","florencio varela":"Florencio Varela",
+            "almirante brown":"Almirante Brown","lomas de zamora":"Lomas de Zamora",
+            "esteban echeverría":"Esteban Echeverría","ezeiza":"Ezeiza",
+            "san vicente":"San Vicente","cañuelas":"Cañuelas","la plata":"La Plata",
+            "ensenada":"Ensenada","berisso":"Berisso","presidente perón":"Guernica"
+        };
+
+        function normalizeOSM(name) {
+            return (name || "").toLowerCase()
+                .replace(/^partido (de (la |del )?|del |de la )/i, "")
+                .trim();
+        }
+
+        var zoneStyle = { color:"#004195", weight:2, opacity:0.85, fillColor:"#5b9bff", fillOpacity:0.20 };
+        var zoneHover = { color:"#0052cc", weight:3, opacity:1, fillColor:"#5b9bff", fillOpacity:0.38 };
+
+        var query = "[out:json][timeout:60];(relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"6\"](-35.30,-59.50,-33.60,-57.70);relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"4\"][\"name\"=\"Ciudad Autónoma de Buenos Aires\"];);out geom;";
+
+        fetch("https://overpass-api.de/api/interpreter", {
+            method:"POST",
+            headers:{"Content-Type":"application/x-www-form-urlencoded"},
+            body:"data="+encodeURIComponent(query)
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+            var geojson = osmtogeojson(data);
+            var added = 0;
+            geojson.features.forEach(function(f){
+                var raw = (f.properties && (f.properties.name || f.properties["name:es"])) || "";
+                var key = normalizeOSM(raw);
+                var displayName = TARGET[key];
+                if (!displayName) return;
+                var layer = L.geoJSON(f, {style: zoneStyle});
+                layer.bindTooltip(displayName, {permanent:true, direction:"center", className:"zona-tooltip"});
+                layer.on("mouseover", function(){ this.setStyle(zoneHover); });
+                layer.on("mouseout",  function(){ this.setStyle(zoneStyle); });
+                layer.addTo(map);
+                added++;
+            });
+            var loading = document.getElementById("mapa-loading");
+            if (loading) loading.style.display = "none";
+            console.log("Zonas cargadas:", added);
+        })
+        .catch(function(err){
+            console.error("Map load error:", err);
+            var loading = document.getElementById("mapa-loading");
+            if (loading) loading.innerHTML = "<span style='color:#ccc;font-size:14px'>✅ Más de 47 zonas activas en GBA</span>";
+        });
+    })();
     </script>
 </body>
 </html>
