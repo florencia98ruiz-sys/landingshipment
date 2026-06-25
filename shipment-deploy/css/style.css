@@ -146,7 +146,13 @@
             font-size: clamp(30px, 4.8vw, 58px);
             font-weight: 900; line-height: 1.05; margin-bottom: 10px;
         }
-        .hero h1 em { font-style: normal; color: var(--accent); }
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(90deg, #5B9BFF 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
         .hero__tagline {
             font-family: 'Poppins', sans-serif;
@@ -1167,6 +1173,4 @@
             .hero__title-row { flex-direction: column; gap: 12px; }
             .sello { width: 80px; height: 80px; }
             .sello__body { width: 62px; height: 62px; }
-        }
-            100% { transform: translateX(-1920px); }
         }
