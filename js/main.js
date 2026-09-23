@@ -1,9 +1,3 @@
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T6SLXXRL');
-
 /* ── Mobile menu ── */
         function toggleMenu() {
             document.getElementById('mobile-menu').classList.toggle('open');
@@ -207,3 +201,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }, { threshold: 0.25 });
         var difSection = document.getElementById('difTruckSection');
         if (difSection) difTruckObs.observe(difSection);
+    
+    /* TESTIMONIOS CAROUSEL */
+    (function(){
+        var outer = document.getElementById('tc-outer');
+        var track = document.getElementById('tc-track');
+        if(!outer || !track) return;
+        outer.addEventListener('mouseenter', function(){ track.classList.add('paused'); });
+        outer.addEventListener('mouseleave', function(){ track.classList.remove('paused'); });
+        outer.addEventListener('touchstart', function(){ track.classList.add('paused'); }, {passive:true});
+        outer.addEventListener('touchend',   function(){ track.classList.remove('paused'); }, {passive:true});
+    })();
